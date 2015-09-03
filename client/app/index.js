@@ -1,4 +1,4 @@
-define(['app/resources/routes'], function(routes){
+define(['app/resources/routes', 'app/resources/user'], function(routes, user){
 	var Router = Backbone.Router.extend({
 	  	routes: routes,
 
@@ -8,6 +8,12 @@ define(['app/resources/routes'], function(routes){
 
 	  	search: function(query, page) {
 	    	console.log("Hit search");
+	  	}
+
+	  	login: function() {
+	  		if(user.isLoggedIn()) {
+	  			user.logout();
+	  		}
 	  	}
 
 	});
