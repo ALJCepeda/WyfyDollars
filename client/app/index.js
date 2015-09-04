@@ -1,27 +1,33 @@
-define(['app/resources/routes', 'app/resources/user', 'app/service/viewmodeller'], function(routes, user, Modeller){
-	var Router = Backbone.Router.extend({
-	  	routes: routes,
+define(['app/resources/routes', 'app/resources/user', 'app/service/viewmodeller', 'app/models/navbar'], 
+	function(routes, user, Modeller, navbar){
+		var Router = Backbone.Router.extend({
+		  	routes: routes,
 
-	  	help: function() {
-	    	console.log("Hit help");
-	  	},
+		  	help: function() {
+		    	console.log("Hit help");
+		  	},
 
-	  	search: function(query, page) {
-	    	console.log("Hit search");
-	  	},
+		  	search: function(query, page) {
+		    	console.log("Hit search");
+		  	},
 
-	  	login: function() {
-	  		if(user.isLoggedIn()) {
-	  			user.logout();
-	  		}
-	  	}
+		  	login: function() {
+		  		if(user.isLoggedIn()) {
+		  			user.logout();
+		  		}
+		  	}
 
-	});
+		});
 
-	var router = new Router();
-	Backbone.history.start();
+		var router = new Router();
+		Backbone.history.start();
 
-	//Grab navbar html
-	var modeller = new Modeller();
-	modeller.fetch('navbar', 'navBarContainer');
-});
+		//Grab navbar html
+		var modeller = new Modeller();
+		modeller.inject('navbar', 'navBarContainer', function(element) {
+			setTimeout(function() {
+				componentHandler.upgradeDom();
+			}, 20);
+		});
+	}
+);

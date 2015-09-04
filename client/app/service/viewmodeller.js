@@ -6,26 +6,25 @@ define([], function() {
 		this.model = '';
 		this.errors = [];
 
-		this.inject = function(ID, view, model) {
-			var selector = '#' + ID;
-			$(selector).html(view);
-		};
-
-		this.fetch = function(url, selector) {
+		this.inject = function(url, ID, complete) {
 			self.url = url;
+
 			$.get('app/views/' + url + '.html').fail(function(error) {
 				self.errors.push(error);
 			}).done(function(data) {
-				self.view = data;
+				var selector = '#' + ID;
+				var div = document.createElement('div');
+				div.innerHTML = data;
+				div.id = 'injectedContentContainer';
 
-				$.get('app/models/' + url + '.js').fail(function(error) {
-					self.errors.push(error);
-				}).done(function(data) {
-					self.model = data;
+				require(['app/models/' + url], function(vm) {
+					self.model = vm;
+					self.view = data;
 
-					if(_.isString(selector) && !_.isEmpty(selector)) {
-						self.inject(selector, self.view, self.model);
-					}
+					$(selector).html(div);
+					ko.applyBindings(vm, div);
+					
+					complete(div);
 				});
 			});			
 		};	
