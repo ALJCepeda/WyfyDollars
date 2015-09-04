@@ -23,11 +23,20 @@ define([], function() {
 
 					$(selector).html(div);
 					ko.applyBindings(vm, div);
-					
-					complete(div);
+					self.refreshDOM();
+
+					if(_.isFunction(complete)) {
+						complete(div);
+					}	
 				});
 			});			
-		};	
+		};
+
+		this.refreshDOM = function() {
+			setTimeout(function() {
+				componentHandler.upgradeDom();
+			}, 20);
+		}
 	}
 
 	return ViewModeller;

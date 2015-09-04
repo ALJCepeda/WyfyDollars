@@ -22,12 +22,8 @@ define(['app/resources/routes', 'app/resources/user', 'app/service/viewmodeller'
 		var router = new Router();
 		Backbone.history.start();
 
-		//Grab navbar html
+		//Inject navbar
 		var modeller = new Modeller();
-		modeller.inject('navbar', 'navBarContainer', function(element) {
-			setTimeout(function() {
-				componentHandler.upgradeDom();
-			}, 20);
-		});
+		modeller.inject('navbar', 'navBarContainer');
 	}
 );
