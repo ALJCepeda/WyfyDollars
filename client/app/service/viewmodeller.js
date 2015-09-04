@@ -3,15 +3,15 @@ define([], function() {
 		var self = this;
 		this.url = '';
 		this.view = '';
-		this.viewmodel = '';
+		this.model = '';
 		this.errors = [];
 
-		var do_injection = function(selector) {
-			debugger;
-			$(selector).html(self.view);
+		this.inject = function(ID, view, model) {
+			var selector = '#' + ID;
+			$(selector).html(view);
 		};
 
-		this.inject = function(url, selector) {
+		this.fetch = function(url, selector) {
 			self.url = url;
 			$.get('app/views/' + url + '.html').fail(function(error) {
 				self.errors.push(error);
@@ -21,8 +21,11 @@ define([], function() {
 				$.get('app/models/' + url + '.js').fail(function(error) {
 					self.errors.push(error);
 				}).done(function(data) {
-					self.viewmodel = data;
-					do_injection(selector);
+					self.model = data;
+
+					if(_.isString(selector) && !_.isEmpty(selector)) {
+						self.inject(selector, self.view, self.model);
+					}
 				});
 			});			
 		};	

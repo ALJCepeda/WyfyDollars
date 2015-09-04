@@ -22,6 +22,6 @@ define(['app/resources/routes', 'app/resources/user', 'app/service/viewmodeller'
 	Backbone.history.start();
 
 	//Grab navbar html
-	var viewmodeller = new Modeller();
-	viewmodeller.inject('navbar', '#navBarContainer');
+	var modeller = new Modeller();
+	modeller.fetch('navbar', 'navBarContainer');
 });

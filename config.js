@@ -9,8 +9,8 @@ module.exports = {
 		'backbone.js' : 'backbone-min.js',
 		'underscore.js' : 'underscore-min.js',
 		'knockback.js' : 'knockback.min.js',
-		'mdl.css' : 'material.min.css',
-		'mdl.js' : 'material.min.js'
+		'mdl.css' : 'material.css',
+		'mdl.js' : 'material.js'
 	},
 	libMap: {
 		'mdl' : 'material-design-lite',
