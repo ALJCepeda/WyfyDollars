@@ -1,4 +1,4 @@
-define(['app/resources/routes', 'app/resources/user'], function(routes, user){
+define(['app/resources/routes', 'app/resources/user', 'app/service/viewmodeller'], function(routes, user, Modeller){
 	var Router = Backbone.Router.extend({
 	  	routes: routes,
 
@@ -8,7 +8,7 @@ define(['app/resources/routes', 'app/resources/user'], function(routes, user){
 
 	  	search: function(query, page) {
 	    	console.log("Hit search");
-	  	}
+	  	},
 
 	  	login: function() {
 	  		if(user.isLoggedIn()) {
@@ -21,4 +21,7 @@ define(['app/resources/routes', 'app/resources/user'], function(routes, user){
 	var router = new Router();
 	Backbone.history.start();
 
+	//Grab navbar html
+	var viewmodeller = new Modeller();
+	viewmodeller.inject('navbar', '#navBarContainer');
 });
