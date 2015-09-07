@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>WyfyDollars</title>
+        <script src="/lib/jquery.js"></script>
+        <script src="/lib/jquery.cookie.js"></script>
+        <script src="/lib/underscore.js"></script>
+        <script src="/lib/knockout.js"></script>
+        <script src="/lib/backbone.js"></script>
+        <script data-main="main" src="/lib/require.js"></script>
+       
+
+        <!--<link rel="stylesheet" href="mdl.css">
+        <script src="mdl.js"></script>-->
+        <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.indigo-pink.min.css">
+        <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    </head>
+    <body>
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
+            <div class="mdl-layout__drawer">
+                <span class="mdl-layout-title">Menu</span>
+                <nav class="mdl-navigation">
+                    <a class="mdl-navigation__link" href="#overview">Overview</a>
+                    <a class="mdl-navigation__link" href="#chores">Chores</a>
+                    <a class="mdl-navigation__link" href="#rewards">Rewards</a>
+                    <a class="mdl-navigation__link" href="#penalties">Penalties</a>
+                    <a class="mdl-navigation__link" href="#goals">Goals</a>
+                    <a class="mdl-navigation__link" href="#profiles">Profiles</a>
+                </nav>
+            </div>
+            
+            <main class="mdl-layout__content">
+                <!--This will be displayed and contain the content if page contains tabs-->
+                <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header" style="display:none;" id="navigation_tabbar">
+                    <header class="mdl-layout__header">
+                        <div class="mdl-layout__header-row">
+                           <!-- Title -->
+                           <span class="mdl-layout-title" data-bind="text: title">undefined</span>
+                        </div>
+                        
+                        <!-- Tabs -->
+                        <div class="mdl-layout__tab-bar mdl-js-ripple-effect" data-bind="foreach: tabs">
+                            <a href="#scroll-tab" class="mdl-layout__tab" data-bind="text: name"></a>
+                        </div>
+                    </header>
+                    <main class="mdl-layout__content" data-bind="foreach: tabs">
+                        <section class="mdl-layout__tab-panel">
+                            <div class="page-content" data-bind="text: placeholder">This is a placeholder</div>
+                        </section>
+                    </main>
+                </div>
+
+                <div id="pageContainer"></div>
+            </main>
+        </div>
+    </body>
+</html>

@@ -1,4 +1,4 @@
-define([], function(){
+	define([], function(){
 	var User = Backbone.Collection.extend({
 		url:'/users',
 		sessionID: '',

@@ -1,11 +1,5 @@
 requirejs.config({
-    'baseUrl': ''
+    'baseUrl': 'app'
 });
 
-$.fn.redraw = function(){
-  $(this).each(function(){
-    var redraw = this.offsetHeight;
-  });
-};
-
-requirejs(['app/index']);
+requirejs(['index']);

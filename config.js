@@ -1,6 +1,7 @@
 module.exports = {
 	port: 8002,
 	bowerdir:'/home/vagrant/bower_components',
+	mongoURL:'mongodb://localhost:27017/test',
 	lib: {
 		'require.js' : 'require.js',
 		'jquery.js' : 'dist/jquery.min.js',

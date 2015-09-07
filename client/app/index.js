@@ -1,29 +1,37 @@
-define(['app/resources/routes', 'app/resources/user', 'app/service/viewmodeller', 'app/models/navbar'], 
-	function(routes, user, Modeller, navbar){
+define(['resources/routemap', 'resources/user', 'services/navigator'], 
+	function(routemap, user, Navigator){
+		var navigation = new Navigator();
+		var containerID = 'pageContainers';
+
 		var Router = Backbone.Router.extend({
-		  	routes: routes,
+		  	routes: routemap.routes,
 
-		  	help: function() {
-		    	console.log("Hit help");
+		  	overview: function() {
+		  		navigation.display('overview', routemap.overview);
 		  	},
 
-		  	search: function(query, page) {
-		    	console.log("Hit search");
+		  	chores: function() {
+		  		navigation.display('chores', routemap.chores);
 		  	},
 
-		  	login: function() {
-		  		if(user.isLoggedIn()) {
-		  			user.logout();
-		  		}
+		  	goals: function() {
+		  		navigation.display('goals', routemap.goals);
+		  	},
+
+		  	penalties: function() {
+		  		navigation.display('penalties', routemap.penalties);
+		  	},
+
+		  	profiles: function() {
+		  		navigation.display('profiles', routemap.profiles);
+		  	},
+
+		  	rewards: function() {
+		  		navigation.display('rewards', routemap.rewards);
 		  	}
-
 		});
 
 		var router = new Router();
 		Backbone.history.start();
-
-		//Inject navbar
-		var modeller = new Modeller();
-		modeller.inject('navbar', 'navBarContainer');
 	}
 );

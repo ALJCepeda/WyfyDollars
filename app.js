@@ -8,10 +8,46 @@ var io = require('socket.io')(http);
 var fs = require('fs');
 
 var config = require('./config.js');
+var mongo = require('mongodb').MongoClient;
+
+/*
+mongo.connect(config.mongoURL, function(err, db) {
+	db.collection('users').insertOne({
+		username:'AJRelic',
+		password:'password'
+	}, function(err, result) {
+		if(err !== null) {
+			console.log(err);
+		} else {
+			console.log('Inserted user into database');
+		}
+
+		db.close();
+	});
+});*/
+/*
+mongo.connect(config.mongoURL, function(err, db) {
+	db.collection('users').createIndex( {username:1 }, { unique: true} );
+});
+*/
+
+mongo.connect(config.mongoURL, function(err, db) {
+	var cursor = db.collection('users').find({
+		username:'AJRelic'
+	});
+
+	cursor.each(function(err, doc) {
+		if(err !== null) {
+			console.log(err);
+		} else if(doc !== null) {
+			console.dir(doc);
+		}
+	});
+});
 
 http.listen(config.port, function() { console.log('listening on *: ' + config.port)});
 app.use(express.static(path.join(__dirname, 'client')));
-app.use( bodyparser.json() );       // to support JSON-encoded bodies
+app.use(bodyparser.json());       // to support JSON-encoded bodies
 app.use(bodyparser.urlencoded({     // to support URL-encoded bodies
   extended: true
 })); 
@@ -23,7 +59,7 @@ app.use(session({
 
 app.get('/', function(req, res){ 
 	req.session.lastPage = '/';
-	res.sendFile(path.join(__dirname, 'index.html'));
+	res.sendFile(path.join(__dirname, 'client/app/index.html'));
 });
 
 app.post('/login', function(req, res) {
