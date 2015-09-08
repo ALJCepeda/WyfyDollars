@@ -7,15 +7,13 @@ define([], function() {
 
 		this.injectDynamic = function(viewpath, modelpath, containerID, injectedID, complete) {
 			if(!_.isFunction(complete)) { complete = function() { }; }
-			
+
 			self.fetchView(viewpath, function(html) {
 				if(_.isUndefined(html)) { complete(); return; }
 		
 				self.fetchModel(modelpath, function(vm) {
-					if(_.isUndefined(vm)) { complete(); return; }
-
 					var div = self.injectHTML(containerID, injectedID, html);
-					self.bindModel(div, vm);
+					self.bindModel(vm, div);
 					self.refreshDOM();
 
 					self.view = div;
@@ -42,7 +40,7 @@ define([], function() {
 
 		this.wrapHTML = function(ID, html) {
 			var div = document.createElement('div');
-			div.innerHTML = data;
+			div.innerHTML = html;
 			div.id = 'ID';
 
 			return div;
@@ -56,7 +54,7 @@ define([], function() {
 
 		this.fetchView = function(viewpath, complete) {
 			$.get(viewpath).fail(function(error) {
-				self.error.push(error);
+				self.errors.push(error);
 				complete();
 			}).done(function(data) {
 				complete(data);
@@ -71,8 +69,8 @@ define([], function() {
 			return div;
 		}
 
-		this.bindModel = function(element, model) {
-			ko.applyBindings(model, div);
+		this.bindModel = function(model, element) {
+			ko.applyBindings(model, element);
 		}
 
 		this.refreshDOM = function() {
