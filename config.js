@@ -6,6 +6,7 @@ module.exports = {
 		'require.js' : 'require.js',
 		'jquery.js' : 'dist/jquery.min.js',
 		'jquery.cookie.js' : 'jquery.cookie.js',
+		'jquery-ui.js' : 'jquery-ui.min.js',
 		'knockout.js' : 'dist/knockout.js',
 		'backbone.js' : 'backbone-min.js',
 		'underscore.js' : 'underscore-min.js',

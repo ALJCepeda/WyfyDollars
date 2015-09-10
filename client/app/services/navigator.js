@@ -11,6 +11,9 @@ define(['services/injector'],
 
 			ko.applyBindings(this.model, $('#navigation_tabbar')[0]);
 
+			this.reachable = function(child) {
+				
+			}
 			this.display = function(path, options, complete) {
 				if(_.isUndefined(options)) { options = {}; }
 				if(_.isUndefined(complete)) { complete = function() {}; }

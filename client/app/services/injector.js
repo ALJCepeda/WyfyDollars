@@ -71,6 +71,18 @@ define([], function() {
 
 		this.bindModel = function(model, element) {
 			ko.applyBindings(model, element);
+
+			//This needs to be put somewhere else
+			//Like a final page configuration after navigator loads a page
+			var c = {};
+		    $(".draggable tr").draggable({
+	            helper: "clone",
+	            start: function(event, ui) {
+	                c.tr = this;
+	                c.helper = ui.helper;
+	               	ui.helper.position = 'absolute';
+	            }
+		    });
 		}
 
 		this.refreshDOM = function() {
