@@ -1,34 +1,30 @@
 define([], function(){
+	var folders = [ 'overview', 'chores', 'rewards', 'penalties', 'goals', 'profiles' ];
+	var routes = {};
+
+
 	return {
 		routes: {
-			'overview':'overview',
-			'overview/:child':'overviewChild',
-
-			'chores':'chores',
-			'chores/:child':'choresChild',
-
-			'rewards':'rewards',
-			'penalties':'penalties',
-			'goals':'goals',
-			'profiles':'profiles'
+			':parent':'parentRoute',
+			':parent/:child':'childRoute'
 		},
 
 		chores: {
 			tabmodel: {
 				title: 'Chores',
 				tabs: [
-					{ name:'Overview', path:'#chores/overview', placeholder:'This is the overview page' },
-					{ name:'Modify', path:'#chores/modify', placeholder:'This is the modify page' }
+					{ name:'Overview', path:'#chores/overview' },
+					{ name:'Modify', path:'#chores/modify' }
 				]
 			}
 		}, 
 
-		overview: {
+		profiles: {
 			tabmodel: {
-				title: 'Shawn\s Overview',
+				title: 'Profiles',
 				tabs: [
-					{ name:'Wyfy', path:'#overview/kennel', placeholder:'This is the Wyfy page' },
-					{ name:'Pixel', path:'#overview/kennel', placeholder:'This is the pixel page' }
+					{ name:'Overview', path:'#profiles/overview' },
+					{ name:'Modify', path:'#profiles/modify' }
 				]
 			}
 		}

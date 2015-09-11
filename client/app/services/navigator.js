@@ -3,7 +3,6 @@ define(['services/injector'],
 		var Navigator = function() {
 			var self = this;
 			this.path;
-			this.injector = new Injector();
 			this.model = ko.observable({
 				title: 'Title',
 				tabs: {}
@@ -11,9 +10,6 @@ define(['services/injector'],
 
 			ko.applyBindings(this.model, $('#navigation_tabbar')[0]);
 
-			this.reachable = function(child) {
-				
-			}
 			this.display = function(path, options, complete) {
 				if(_.isUndefined(options)) { options = {}; }
 				if(_.isUndefined(complete)) { complete = function() {}; }
@@ -38,15 +34,16 @@ define(['services/injector'],
 
 			this.displayView = function(path, containerID, injectedID, nomodel) {
 				var viewpath = 'app/views/'+ path +'.html';
+				var injector = new Injector();
 
 				if(_.isUndefined(nomodel) || nomodel === false) {
 					var modelpath = 'models/' + path;
-					this.injector.injectDynamic(viewpath, modelpath, containerID, injectedID,
+					injector.injectDynamic(viewpath, modelpath, containerID, injectedID,
 						function() {
 							self.path = path;
 					});
 				} else {
-					this.injector.injectStatic(viewpath, containerID, injectedID,
+					injector.injectStatic(viewpath, containerID, injectedID,
 						function() {
 							self.path = path;
 					});

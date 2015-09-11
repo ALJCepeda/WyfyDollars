@@ -1,44 +1,39 @@
-<style type="text/css">
-	#selectable .ui-selecting { background: #FECA40; }
-  	#selectable .ui-selected { background: #F39814; color: white; }
-</style>
+<div class="panel mdl-shadow--2dp">
+	<div class="mdl-grid mdl-grid--no-spacing flex-center" style="margin-top:40px;">
+		<div class="draggable content flex-center mdl-cell mdl-cell--10-col">
+			<button class="onseem-topright mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+				<i class="material-icons">add</i>
+			</button>
+			<table class="standard-table">
+				<thead>
+					<tr>
+						<th>&nbsp;</th>
+						<th>Name</th>
+						<th>Description</th>
+						<th>&nbsp;</th>
+					</tr>
+				</thead>
+				<tbody data-bind="foreach: chores">
+					<tr>
+						<td>
+							<a href="#" data-bind="click:$parent.editChore"><i class="material-icons">edit</i></a>
+						</td>
 
-<section class="section--center" style="padding-top:40px;"> 
-	<div class="flex-center mdl-grid mdl-grid--no-spacing" style="width:100%; height:100%;">
-			<div class="draggable content flex-center mdl-cell mdl-cell--10-col">
-				<button class="onseem mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
-					<i class="material-icons">add</i>
-				</button>
-				<table class="standard-table">
-					<thead>
-						<tr>
-							<th>&nbsp;</th>
-							<th>Name</th>
-							<th>Description</th>
-							<th>&nbsp;</th>
-						</tr>
-					</thead>
-					<tbody data-bind="foreach: chores">
-						<tr>
-							<td>
-								<a href="#" data-bind="click:$parent.editChore"><i class="material-icons">edit</i></a>
-							</td>
+						<!-- ko ifnot:editable -->
+						<td data-bind='text:name'>name</td>
+						<td data-bind='text:description'>description</td>
+						<!-- /ko -->
+						<!-- ko if:editable -->
+						<td><input data-bind='value:name' /></td>
+						<td><input data-bind='value:description' /></td>
+						<!-- /ko -->
 
-							<!-- ko ifnot:editable -->
-							<td data-bind='text:name'>name</td>
-							<td data-bind='text:description'>description</td>
-							<!-- /ko -->
-							<!-- ko if:editable -->
-							<td><input data-bind='value:name' /></td>
-							<td><input data-bind='value:description' /></td>
-							<!-- /ko -->
-
-							<td>
-								<a href="#" data-bind="click:$parent.removeChore"><i class="material-icons">delete</i></a>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+						<td>
+							<a href="#" data-bind="click:$parent.removeChore"><i class="material-icons">delete</i></a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
-</section>
+</div>

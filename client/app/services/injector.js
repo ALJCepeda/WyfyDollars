@@ -12,11 +12,11 @@ define([], function() {
 				if(_.isUndefined(html)) { complete(); return; }
 		
 				self.fetchModel(modelpath, function(vm) {
-					var div = self.injectHTML(containerID, injectedID, html);
-					self.bindModel(vm, div);
+					self.injectHTML(containerID, html);
+					self.bindModel(containerID, vm);;
 					self.refreshDOM();
 
-					self.view = div;
+					self.view = html;
 					self.model = vm;
 					complete();
 				});
@@ -29,10 +29,10 @@ define([], function() {
 			this.fetchView(viewpath, function(html) {
 				if(_.isUndefined(html)) { complete(); return; }
 
-				var div = self.injectHTML(containerID, injectedID, html);
+				vself.injectHTML(containerID, html);
 				self.refreshDOM();
 
-				self.view = div;
+				self.view = html;
 				delete self.model;
 				complete();
 			})
@@ -41,7 +41,7 @@ define([], function() {
 		this.wrapHTML = function(ID, html) {
 			var div = document.createElement('div');
 			div.innerHTML = html;
-			div.id = 'ID';
+			div.id = ID;
 
 			return div;
 		}
@@ -61,15 +61,15 @@ define([], function() {
 			});
 		}
 
-		this.injectHTML = function(containerID, injectedID, html) {
-			var div = this.wrapHTML(injectedID, html);
+		this.injectHTML = function(containerID, html) {
 			var selector= '#' + containerID;
-			$(selector).html(div);
-
-			return div;
+			$(selector).html(html);
 		}
 
-		this.bindModel = function(model, element) {
+		this.bindModel = function(containerID, model) {
+			var element = $('#'+containerID)[0];
+			//Remove previous bindings
+			ko.cleanNode(element);
 			ko.applyBindings(model, element);
 
 			//This needs to be put somewhere else
@@ -81,6 +81,7 @@ define([], function() {
 	                c.tr = this;
 	                c.helper = ui.helper;
 	               	ui.helper.position = 'absolute';
+	               	ui.helper.zIndex = 2;
 	            }
 		    });
 		}

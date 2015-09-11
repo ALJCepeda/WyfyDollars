@@ -2,12 +2,37 @@ body {
 	background-color: #f5f5dc;
 }
 
-.content .onseem {
-	position:absolute;
-	top:-30px;
-	right:-30px;
-	z-index:2;
+.background {
+	width:100%;
+	height:100%;
+	overflow:visible;
+	position:relative;
 }
+.panel {
+	position:absolute;
+	left:10%;
+	top:5%;
+	bottom:0px;
+	width:80%;
+	padding: 10px;
+	display:block;
+	overflow:auto;
+	background-color:#faffe0;
+}
+
+.panel .panel-footer {
+	position:fixed;
+	height:20%;
+	width:70%;
+	left:15%;
+	bottom:0px;
+	z-index: 3;
+}
+
+.collection {
+
+}
+
 
 .standard-table {
 	width:95%;
@@ -19,8 +44,30 @@ body {
 }
 
 .content {
+	height:100%;
     overflow: visible;
     position: relative;
+}
+
+.content .onseem-topright {
+	position:absolute;
+	top:-30px;
+	right:-30px;
+	z-index:2;
+}
+
+.content .onseem-topleft {
+	position:absolute;
+	top:-30px;
+	left:-30px;
+	z-index:2;
+}
+
+.content .onseem-midleft {
+	position:absolute;
+	left:-30px;
+	top:33%;
+	z-index:2;
 }
 
 .flex-center {
@@ -28,3 +75,14 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+.layout-horizontal-scroll {
+	align-self:center;
+	display:flex; 
+	flex-direction:row; 
+	justify-content:space-between; 
+	align-items:center;
+	overflow:scroll;
+}
+#selectable .ui-selecting { background: #FECA40; }
+#selectable .ui-selected { background: #F39814; color: white; }
