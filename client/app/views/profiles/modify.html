@@ -1,4 +1,3 @@
-
 <div class="mdl-card mdl-shadow--16dp" style="position:absolute; right:10%; top:-60px; z-index:4;">
 	<div class="mdl-card__title">
 		<h2 class="mdl-card__title-text">Damian Bonacci</h2>
@@ -11,25 +10,79 @@
 	<div class="mdl-card__supporting-text">
 		  A tenacious child that loves legos, video games, nerf guns and wheezing when he laughs
 	</div>
-	<div class="mdl-card__actions">
-	    <a href="http://en.wikipedia.org/wiki/Sky_Tower_%28Auckland%29">Delete</a>
+
+	<div class="flex-horizontal">
+		<button class="btn btn-primary btn-flat">
+ 			Submit..
+			<div class="ripple-wrapper"></div>
+		</button>
+		
+		<button class="btn btn-primary btn-flat">
+ 			Cancel..
+			<div class="ripple-wrapper"></div>
+		</button>
 	</div>
 </div>
 
 <div class="panel mdl-shadow--2dp">
-	<div style="width:65%; height:75%;">
-		<label>Firstname:</label>
-		<div class="mdl-textfield mdl-js-textfield">
-    		<input class="mdl-textfield__input" type="text" id="sample1" />
-    		<label class="mdl-textfield__label" for="sample1">Firstname...</label>
+
+	<form class="flex-horizontal" style="width:60%; height:75%; padding:20px;">
+		<div class="flex-horizontal" style="width:100%;">
+			<label style="width:100%">Name:</label>
+			<div class="flex-horizontal" style="padding-left:30px;width:80%">
+				<input class="form-control" type="text" placeholder="Firstname..." value="Damian" />
+				<input class="form-control" type="text" placeholder="Middlename..." value="Something" />
+				<input class="form-control" type="text" placeholder="Lastname..." value="Bonacci" />		
+			</div>
+		</div>
+
+		<div class="flex-horizontal" style="width:50%;">
+			<label style="width:100%">Birthday: </label>
+			<div style="padding-left:30px;">
+				<select class="form-control" placeholder="Month" data-bind="options:months(), value:selectedMonth"></select>
+  				<select class="form-control" placeholder="Days" data-bind="options:days, value:selectedDay"></select>
+  				<select class="form-control" placeholder="Years" data-bind="options:years(), value:selectedYear"></select>
+  			</div>
+		</div>
+
+		<div class="flex-horizontal" style="width:40%;">
+			<label style="width:100%">Grade: </label>
+
+  			<div style="padding-left:30px;">
+  				<input class="form-control" type="number" placeholder="Grade..." />
+  			</div>
   		</div>
-	</div>
+
+  		<div class="flex-horizontal" style="width:100%;">
+  			<label style="width:100%">Description: </label>
+
+  			<div style="padding-left:30px; width:80%; height:50%">
+  				<textarea class="form-control" style="height:100%;width:100%"></textarea>
+  			</div>
+  		</div>
+
+  		<div class="flex-horizontal" style="width:50%;">
+  			<label style="width:100%">Email: </label>
+
+  			<div style="padding-left:30px; width:100%">
+  				<input class="form-control" type="text" placeholder="Email..." />
+  			</div>
+  		</div>
+
+  		<div class="flex-horizontal" style="width:40%;">
+  			<label style="width:100%">Image: </label>
+
+  			<div style="padding-left:30px; width:100%">
+  				<input class="form-control" type="text" placeholder="URL..." />
+  			</div>
+  		</div>
+	</form>
 	<div class="panel-footer">
 		<div class="content flex-center">
 			<button class="onseem-midleft mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
 				<i class="material-icons">add</i>
 			</button>
-			<div class="layout-horizontal-scroll" style="padding-left:35px;">
+			<div class="flex-horizontal-scroll" style="padding-left:35px;">
 				<div style="margin-right:20px">
 					<img class="mdl-shadow--4dp" style="height:100px; width:100px;" src="https://scontent-sea1-1.xx.fbcdn.net/hphotos-xaf1/v/t1.0-9/181948_10150417588385328_7691984_n.jpg?oh=d745c3cc5226d9dc8f96b1b882c8d30d&oe=566A4013" border="0" alt="Damian Bonacci">
 				</div>

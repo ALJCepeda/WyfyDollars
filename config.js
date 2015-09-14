@@ -7,15 +7,19 @@ module.exports = {
 		'jquery.js' : 'dist/jquery.min.js',
 		'jquery.cookie.js' : 'jquery.cookie.js',
 		'jquery-ui.js' : 'jquery-ui.min.js',
+		'pikaday.js' : 'pikaday.js',
 		'knockout.js' : 'dist/knockout.js',
 		'backbone.js' : 'backbone-min.js',
 		'underscore.js' : 'underscore-min.js',
 		'knockback.js' : 'knockback.min.js',
 		'mdl.css' : 'material.css',
-		'mdl.js' : 'material.js'
+		'mdl.js' : 'material.js',
+		'boot-mdl.css' : 'dist/css/material.min.css',
+		'boot-mdl.js' : 'dist/js/material.min.js'
 	},
 	libMap: {
 		'mdl' : 'material-design-lite',
+		'boot-mdl' : 'bootstrap-material-design',
 		'require' : 'requirejs'
 	}
 };

@@ -13,12 +13,14 @@ define([], function() {
 		
 				self.fetchModel(modelpath, function(vm) {
 					self.injectHTML(containerID, html);
-					self.bindModel(containerID, vm);;
-					self.refreshDOM();
-
-					self.view = html;
-					self.model = vm;
-					complete();
+					
+					self.refreshDOM(function() {
+						self.bindModel(containerID, vm);
+						
+						self.view = html;
+						self.model = vm;
+						complete();	
+					});
 				});
 			});
 		}
@@ -30,12 +32,12 @@ define([], function() {
 				if(_.isUndefined(html)) { complete(); return; }
 
 				vself.injectHTML(containerID, html);
-				self.refreshDOM();
-
-				self.view = html;
-				delete self.model;
-				complete();
-			})
+				self.refreshDOM(function() {
+					self.view = html;
+					delete self.model;
+					complete();
+				});
+			});
 		}
 
 		this.wrapHTML = function(ID, html) {
@@ -86,10 +88,12 @@ define([], function() {
 		    });
 		}
 
-		this.refreshDOM = function() {
+		this.refreshDOM = function(callback, delay) {
+			delay = _.isUndefined(delay) ? 20 : delay;
 			setTimeout(function() {
 				componentHandler.upgradeDom();
-			}, 20);
+				callback();
+			}, delay);
 		}
 	}
 

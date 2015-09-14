@@ -27,12 +27,12 @@ body {
 	left:15%;
 	bottom:0px;
 	z-index: 3;
+	background-color:#faffe0;
 }
 
-.collection {
-
+.form {
+	padding:20px;
 }
-
 
 .standard-table {
 	width:95%;
@@ -76,13 +76,30 @@ body {
   justify-content: center;
 }
 
-.layout-horizontal-scroll {
+.flex-horizontal {
+	height: 25%;
+	display: flex;
+	flex-flow:row wrap;
+	align-items:center;
+	justify-content:space-between;
+	align-content:flex-start;
+}
+
+.flex-pull-right {
+	display: felx;
+	flex-flow:row nowrap;
+	align-items:;
+}
+
+.flex-horizontal-scroll {
 	align-self:center;
 	display:flex; 
 	flex-direction:row; 
 	justify-content:space-between; 
 	align-items:center;
-	overflow:scroll;
+	overflow-x:scroll;
+	overflow-y:hidden;
 }
+
 #selectable .ui-selecting { background: #FECA40; }
 #selectable .ui-selected { background: #F39814; color: white; }
