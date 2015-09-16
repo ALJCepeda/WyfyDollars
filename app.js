@@ -107,7 +107,7 @@ app.get('/lib/:name', function(req, res){
 	if( typeof script !== 'undefined' ) {
 		//Remove extension from dependency name
 		var name = req.params.name;
-		name = name.substring(0, name.lastIndexOf('.'));
+		name = name.substring(0, name.indexOf('.'));
 
 		//Check if dependency is mapped somewhere in the bower directory
 		if( typeof config.libMap[name] !== 'undefined' ) {
@@ -121,4 +121,7 @@ app.get('/lib/:name', function(req, res){
 		res.status('404')
 			.send('Not Found');
 	}
+});
+app.get('/fonts/:name', function(req, res) {
+	
 });

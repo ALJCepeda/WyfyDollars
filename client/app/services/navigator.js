@@ -37,7 +37,7 @@ define(['services/injector'],
 				var injector = new Injector();
 
 				if(_.isUndefined(nomodel) || nomodel === false) {
-					var modelpath = 'models/' + path;
+					var modelpath = 'viewmodels/' + path;
 					injector.injectDynamic(viewpath, modelpath, containerID, injectedID,
 						function() {
 							self.path = path;

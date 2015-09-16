@@ -1,24 +1,39 @@
+<style type="text/css">
+	.blue-A400 {
+		background-color:#2979ff;
+	}
+
+	.cyan-300 {
+		background-color: #4DD0E1;
+		color: #4DD0E1;
+		background:#4DD0E1;
+	}
+
+	.purple-A100 {
+		background-color: #ea80fc;
+	}
+</style>
 <div class="mdl-card mdl-shadow--16dp" style="position:absolute; right:10%; top:-60px; z-index:4;">
 	<div class="mdl-card__title">
-		<h2 class="mdl-card__title-text">Damian Bonacci</h2>
+		<h2 class="mdl-card__title-text" style="font-size:20px" data-bind="text:l().fullname"></h2>
 	</div>
 	
-	<div class="mdl-card__media flex-center">
-    	<img width="173" height="157" border="0" alt="" style="padding:10px;" src="https://scontent-sea1-1.xx.fbcdn.net/hphotos-xpl1/v/t1.0-9/12002050_10205944361060468_1202821409954152528_n.jpg?oh=b1e7779fb4435baf63e8fed2ffab8d98&oe=567411A8">
+	<div class="mdl-card__media flex-center" data-bind="css: { 'cyan-300': l().gender() === 'm', 'purple-A100': l().gender() === 'f' }">
+    	<img width="173" height="157" border="0" alt="" style="padding:10px;" data-bind="attr: { 'src':l().image }">
   	</div>
 	
 	<div class="mdl-card__supporting-text">
-		  A tenacious child that loves legos, video games, nerf guns and wheezing when he laughs
+		<span data-bind="text:l().description"></span>
 	</div>
 
 	<div class="flex-horizontal">
-		<button class="btn btn-primary btn-flat">
- 			Submit..
+		<button class="btn btn-primary btn-flat btn-material-green-A700">
+ 			Submit
 			<div class="ripple-wrapper"></div>
 		</button>
 
-		<button class="btn btn-primary btn-flat">
- 			Cancel..
+		<button class="btn btn-primary btn-flat btn-material-blue-grey-500">
+ 			Cancel
 			<div class="ripple-wrapper"></div>
 		</button>
 	</div>
@@ -30,26 +45,31 @@
 		<div class="flex-horizontal" style="width:100%;">
 			<label style="width:100%">Name:</label>
 			<div class="flex-horizontal" style="padding-left:30px;width:80%">
-				<input class="form-control" type="text" placeholder="Firstname..." value="Damian" />
-				<input class="form-control" type="text" placeholder="Middlename..." value="Something" />
-				<input class="form-control" type="text" placeholder="Lastname..." value="Bonacci" />		
+				<label class="form-control" data-bind="visible:(editing() !== 'first'), text:l().firstname, click:edit('first')"></label>
+				<input class="form-control" type="text" placeholder="Firstname..." data-bind="visible: editing_first, textInput:l().firstname, hasFocus:stopEdit"/>
+
+				<input class="form-control" type="text" placeholder="Middlename..." data-bind="textInput:l().middlename" />
+				<input class="form-control" type="text" placeholder="Lastname..." data-bind="textInput:l().lastname" />		
 			</div>
 		</div>
 
 		<div class="flex-horizontal" style="width:50%;">
 			<label style="width:100%">Birthday: </label>
 			<div style="padding-left:30px;">
-				<select class="form-control" placeholder="Month" data-bind="options:months(), value:selectedMonth"></select>
-  				<select class="form-control" placeholder="Days" data-bind="options:days, value:selectedDay"></select>
-  				<select class="form-control" placeholder="Years" data-bind="options:years(), value:selectedYear"></select>
+				<select class="form-control" placeholder="Month..." data-bind="options:months(), value:l().birthmonth"></select>
+  				<select class="form-control" placeholder="Days..." data-bind="options:days, value:l().birthday"></select>
+  				<select class="form-control" placeholder="Years..." data-bind="options:years(), value:l().birthyear"></select>
   			</div>
 		</div>
 
 		<div class="flex-horizontal" style="width:40%;">
-			<label style="width:100%">Grade: </label>
+			<label style="width:100%">Gender: </label>
 
   			<div style="padding-left:30px;">
-  				<input class="form-control" type="number" placeholder="Grade..." />
+  				<select class="form-control" placeholder="Gender..." data-bind="value:l().gender">
+  					<option value="m">Male</option>
+  					<option value="f">Female</option>
+  				</select>
   			</div>
   		</div>
 
@@ -57,7 +77,7 @@
   			<label style="width:100%">Email: </label>
 
   			<div style="padding-left:30px; width:100%">
-  				<input class="form-control" type="text" placeholder="Email..." />
+  				<input class="form-control" type="text" placeholder="Email..." data-bind="value:l().email" />
   			</div>
   		</div>
 
@@ -65,7 +85,7 @@
   			<label style="width:100%">Image: </label>
 
   			<div style="padding-left:30px; width:100%">
-  				<input class="form-control" type="text" placeholder="URL..." />
+  				<input class="form-control" type="text" placeholder="URL..." data-bind="value:l().image"/>
   			</div>
   		</div>
 
@@ -73,7 +93,7 @@
   			<label style="width:100%">Description: </label>
 
   			<div style="padding-left:30px; width:80%; height:50%">
-  				<textarea class="form-control" style="height:100%;width:100%"></textarea>
+  				<textarea class="form-control" style="height:100%;width:100%" data-bind="textInput:l().description"></textarea>
   			</div>
   		</div>
 	</form>
@@ -82,39 +102,9 @@
 			<button class="onseem-midleft mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
 				<i class="material-icons">add</i>
 			</button>
-			<div class="flex-horizontal-scroll" style="padding-left:35px;">
+			<div class="flex-horizontal-scroll" style="padding-left:35px;" data-bind="foreach:c.profiles">
 				<div style="margin-right:20px">
-					<img class="mdl-shadow--4dp" style="height:100px; width:100px;" src="https://scontent-sea1-1.xx.fbcdn.net/hphotos-xaf1/v/t1.0-9/181948_10150417588385328_7691984_n.jpg?oh=d745c3cc5226d9dc8f96b1b882c8d30d&oe=566A4013" border="0" alt="Damian Bonacci">
-				</div>
-				<div style="margin-right:20px">
-					<img class="mdl-shadow--4dp" style="height:100px; width:100px;" src="https://scontent-sea1-1.xx.fbcdn.net/hphotos-xaf1/v/t1.0-9/181948_10150417588385328_7691984_n.jpg?oh=d745c3cc5226d9dc8f96b1b882c8d30d&oe=566A4013" border="0" alt="Damian Bonacci">
-				</div>
-				<div style="margin-right:20px">
-					<img class="mdl-shadow--4dp" style="height:100px; width:100px;" src="https://scontent-sea1-1.xx.fbcdn.net/hphotos-xaf1/v/t1.0-9/181948_10150417588385328_7691984_n.jpg?oh=d745c3cc5226d9dc8f96b1b882c8d30d&oe=566A4013" border="0" alt="Damian Bonacci">
-				</div>
-				<div style="margin-right:20px">
-					<img class="mdl-shadow--4dp" style="height:100px; width:100px;" src="https://scontent-sea1-1.xx.fbcdn.net/hphotos-xaf1/v/t1.0-9/181948_10150417588385328_7691984_n.jpg?oh=d745c3cc5226d9dc8f96b1b882c8d30d&oe=566A4013" border="0" alt="Damian Bonacci">
-				</div>
-				<div style="margin-right:20px">
-					<img class="mdl-shadow--4dp" style="height:100px; width:100px;" src="https://scontent-sea1-1.xx.fbcdn.net/hphotos-xaf1/v/t1.0-9/181948_10150417588385328_7691984_n.jpg?oh=d745c3cc5226d9dc8f96b1b882c8d30d&oe=566A4013" border="0" alt="Damian Bonacci">
-				</div>
-				<div style="margin-right:20px">
-					<img class="mdl-shadow--4dp" style="height:100px; width:100px;" src="https://scontent-sea1-1.xx.fbcdn.net/hphotos-xaf1/v/t1.0-9/181948_10150417588385328_7691984_n.jpg?oh=d745c3cc5226d9dc8f96b1b882c8d30d&oe=566A4013" border="0" alt="Damian Bonacci">
-				</div>
-				<div style="margin-right:20px">
-					<img class="mdl-shadow--4dp" style="height:100px; width:100px;" src="https://scontent-sea1-1.xx.fbcdn.net/hphotos-xaf1/v/t1.0-9/181948_10150417588385328_7691984_n.jpg?oh=d745c3cc5226d9dc8f96b1b882c8d30d&oe=566A4013" border="0" alt="Damian Bonacci">
-				</div>
-				<div style="margin-right:20px">
-					<img class="mdl-shadow--4dp" style="height:100px; width:100px;" src="https://scontent-sea1-1.xx.fbcdn.net/hphotos-xaf1/v/t1.0-9/181948_10150417588385328_7691984_n.jpg?oh=d745c3cc5226d9dc8f96b1b882c8d30d&oe=566A4013" border="0" alt="Damian Bonacci">
-				</div>
-				<div style="margin-right:20px">
-					<img class="mdl-shadow--4dp" style="height:100px; width:100px;" src="https://scontent-sea1-1.xx.fbcdn.net/hphotos-xaf1/v/t1.0-9/181948_10150417588385328_7691984_n.jpg?oh=d745c3cc5226d9dc8f96b1b882c8d30d&oe=566A4013" border="0" alt="Damian Bonacci">
-				</div>
-				<div style="margin-right:20px">
-					<img class="mdl-shadow--4dp" style="height:100px; width:100px;" src="https://scontent-sea1-1.xx.fbcdn.net/hphotos-xaf1/v/t1.0-9/181948_10150417588385328_7691984_n.jpg?oh=d745c3cc5226d9dc8f96b1b882c8d30d&oe=566A4013" border="0" alt="Damian Bonacci">
-				</div>
-				<div style="margin-right:20px">
-					<img class="mdl-shadow--4dp" style="height:100px; width:100px;" src="https://scontent-sea1-1.xx.fbcdn.net/hphotos-xaf1/v/t1.0-9/181948_10150417588385328_7691984_n.jpg?oh=d745c3cc5226d9dc8f96b1b882c8d30d&oe=566A4013" border="0" alt="Damian Bonacci">
+					<img class="mdl-shadow--4dp" style="height:100px; width:100px;" border="0" data-bind="attr: { src:image, alt:fullname }, click:$parent.loadProfile" >
 				</div>
 			</div>
 		</div>

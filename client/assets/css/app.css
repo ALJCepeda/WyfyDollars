@@ -1,5 +1,5 @@
 body {
-	background-color: #f5f5dc;
+	background-color: #ffecb3;
 }
 
 .background {
@@ -17,7 +17,7 @@ body {
 	padding: 10px;
 	display:block;
 	overflow:auto;
-	background-color:#faffe0;
+	background-color:#fffde7;
 }
 
 .panel .panel-footer {
@@ -27,7 +27,7 @@ body {
 	left:15%;
 	bottom:0px;
 	z-index: 3;
-	background-color:#faffe0;
+	background-color:#fffde7;
 }
 
 .form {

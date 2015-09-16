@@ -4,26 +4,30 @@
         <title>WyfyDollars</title>
         
         <script src="/lib/jquery.js"></script>
-        <script src="/lib/jquery.cookie.js"></script>
+        <script src="/lib/jquery-cookie.js"></script>
         <script src="/lib/jquery-ui.js"></script>
         <script src="/lib/underscore.js"></script>
         <script src="/lib/knockout.js"></script>
         <script src="/lib/backbone.js"></script>
         <script src="/lib/pikaday.js"></script>
-        <script data-main="main" src="/lib/require.js"></script>
+        <script data-main="main" src="/lib/requirejs.js"></script>
        
 
-        <link rel="stylesheet" href="/lib/boot-mdl.css">
-        <script src="/lib/boot-mdl.js"></script>
         <link rel="stylesheet" href="/lib/mdl.css">
         <script src="/lib/mdl.js"></script>
-        <link rel="stylesheet" href="assets/css/app.css">
 
+        <link rel="stylesheet" href="/lib/boot-mdl.css">
+        <link rel="stylesheet" href="/lib/boot-mdl.ripples.css">
+        <link rel="stylesheet" href="/lib/boot-mdl.palette.css">
+        <link rel="stylesheet" href="/lib/boot-mdl.roboto.css">        
+        <script src="/lib/boot-mdl.js"></script>
+
+
+        <link rel="stylesheet" href="assets/css/app.css">
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     </head>
     <body>
-
         <div class="mdl-layout mdl-js-layout">
             <div class="mdl-layout__drawer">
                 <span class="mdl-layout-title">Menu</span>
@@ -58,4 +62,10 @@
             </main>
         </div>
     </body>
+    <script type="text/javascript">
+        $(function() {
+            debugger;
+            $.material.init();
+        });
+    </script>
 </html>

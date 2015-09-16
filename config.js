@@ -3,9 +3,9 @@ module.exports = {
 	bowerdir:'/home/vagrant/bower_components',
 	mongoURL:'mongodb://localhost:27017/test',
 	lib: {
-		'require.js' : 'require.js',
+		'requirejs.js' : 'require.js',
 		'jquery.js' : 'dist/jquery.min.js',
-		'jquery.cookie.js' : 'jquery.cookie.js',
+		'jquery-cookie.js' : 'jquery.cookie.js',
 		'jquery-ui.js' : 'jquery-ui.min.js',
 		'pikaday.js' : 'pikaday.js',
 		'knockout.js' : 'dist/knockout.js',
@@ -15,11 +15,14 @@ module.exports = {
 		'mdl.css' : 'material.css',
 		'mdl.js' : 'material.js',
 		'boot-mdl.css' : 'dist/css/material.min.css',
-		'boot-mdl.js' : 'dist/js/material.min.js'
+		'boot-mdl.js' : 'dist/js/material.min.js',
+		'boot-mdl.roboto.css' : 'dist/css/roboto.min.css',
+		'boot-mdl.palette.css' : 'dist/css/material-fullpalette.min.css',
+		'boot-mdl.ripples.css' : 'dist/css/ripples.min.css'
 	},
 	libMap: {
+		'jquery-cookie' : 'jquery.cookie',
 		'mdl' : 'material-design-lite',
-		'boot-mdl' : 'bootstrap-material-design',
-		'require' : 'requirejs'
+		'boot-mdl' : 'bootstrap-material-design'
 	}
 };
