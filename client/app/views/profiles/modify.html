@@ -1,18 +1,44 @@
 <style type="text/css">
 	#profileCard {
-		min-width:280px;
 		max-width:350px;
 	}
 
-	.panel > form {
-		min-width:350px;
+	@media screen and (max-width: 800px) {
+    	.panel > .f-aside {
+    		flex: auto;
+    	}
+
+    	.panel > form {
+    		min-width:0px;
+    	}
+	}
+
+	@media screen and (max-width:450px) {
+		form .f-aside, .f-big, .f-little{
+			flex:auto;
+		}
+
+		.Q3 {
+			width:100%;
+			height:100%;
+		}
+
+		.Q2-height {
+			height:75%;
+		}
+
+		.indent-right {
+			padding-left:0px;
+		}
+		.float-right {
+			float:left;
+		}
 	}
 </style>
 
 
-<div class="panel Q3 mdl-shadow--2dp">
-	<div class="wide Q3-height f-row-w f-vcenter">
-		<div id="profileCard" class="mdl-card mdl-shadow--16dp aside ">
+<div class="panel Q3 mdl-shadow--2dp" style="padding:25px;">
+		<div id="profileCard" class="mdl-card mdl-shadow--16dp f-aside">
 			<div class="mdl-card__title">
 				<h2 class="mdl-card__title-text" style="font-size:20px" data-bind="text:l().fullname"></h2>
 			</div>
@@ -38,73 +64,76 @@
 			</div>
 		</div>
 
-		<form class="aside form f-row-w f-vcenter Q3-height" style="max-width:450px;">
-			<div class="wide Q1-height f-row-w f-vcenter">
+		<form class="form f-row-w f-aside Q3-height">
+			<div class="wide">
 				<label class="wide">Name:</label>
-				<div class="indent-right wide f-now-w f-vcenter">
-					<label class="form-control" data-bind="visible:(editing() !== 'first'), text:l().firstname, click:edit('first')"></label>
-					<input class="form-control" type="text" placeholder="Firstname..." data-bind="visible: editing_first, textInput:l().firstname, hasFocus:stopEdit"/>
+
+				<div class="wide f-row-w">
+					<input class="form-control" type="text" placeholder="Firstname..." data-bind="textInput:l().firstname"/>
 					<input class="form-control" type="text" placeholder="Middlename..." data-bind="textInput:l().middlename" />
 					<input class="form-control" type="text" placeholder="Lastname..." data-bind="textInput:l().lastname" />		
 				</div>
 			</div>
 
-			<div class="wide Q1-height f-row-w">
-				<div class="aside">
+			<div class="f-row-w wide">
+				<div class="wide f-big">
 					<label class="wide">Birthday: </label>
-					<div class="indent-right">
+
+					<div class="indent-right wide">
 						<select class="form-control" placeholder="Month..." data-bind="options:months(), value:l().birthmonth"></select>
-		  				<select class="form-control" placeholder="Days..." data-bind="options:days, value:l().birthday"></select>
-		  				<select class="form-control" placeholder="Years..." data-bind="options:years(), value:l().birthyear"></select>
-		  			</div>
-	  			</div>
+						<select class="form-control" placeholder="Days..." data-bind="options:days, value:l().birthday"></select>
+						<select class="form-control" placeholder="Years..." data-bind="options:years(), value:l().birthyear"></select>
+					</div>
+				</div>
 
-	  			<div class="aside">
-	  				<label class="wide">Gender: </label>
-
-		  			<div class="indent-right wide">
-		  				<select class="form-control" placeholder="Gender..." data-bind="value:l().gender">
-		  					<option value="m">Male</option>
-		  					<option value="f">Female</option>
-		  				</select>
-		  			</div>
-	  			</div>
+				<div class="wide f-little">
+					<div class="f-row-w">
+						<div class="wide">
+							<label class="Q3-width">Gender: </label>
+						</div>
+						<div class="wide indent-right">
+							<select class="form-control" placeholder="Gender..." data-bind="value:l().gender">
+								<option value="m">Male</option>
+								<option value="f">Female</option>
+							</select>
+						</div>
+					</div>
+				</div>
 			</div>
 
-	  		<div class="wide Q1-height f-row-w f-vcenter">
-	  			<div class="aside">
-		  			<label class="wide">Email: </label>
+			<div class="f-row-w wide" style="justify-content:space-between;">
+				<div class="wide f-big">
+	  				<label class="wide">Email: </label>
 
-		  			<div class="indent-right wide">
-		  				<input class="form-control" type="text" placeholder="Email..." data-bind="value:l().email" />
-		  			</div>
-	  			</div>
+	  				<div class="indent-right wide">
+	  					<input class="form-control" type="text" placeholder="Email..." data-bind="value:l().email" />
+	  				</div>
+				</div>
 
-	  			<div class="aside">
-	  				<label class="wide">Image: </label>
+				<div class="wide f-little">
+					<label class="wide">Image: </label>
 
-		  			<div class="indent-right wide">
-		  				<input class="form-control" type="text" placeholder="URL..." data-bind="value:l().image"/>
-		  			</div>
-		  		</div>
-	  		</div>
-
-	  		<div class="Q1-height wide f-row-w f-vcenter">
-	  			<label class="wide">Description: </label>
-
-	  			<div class="indent-right wide">
-	  				<textarea class="form-control Q3-width" data-bind="textInput:l().description"></textarea>
+	  				<div class="indent-right wide">
+	  					<input class="form-control" type="text" placeholder="URL..." data-bind="value:l().image"/>
+	  				</div>
 	  			</div>
 	  		</div>
+
+	  		<div class="f-row-w wide">
+				<label class="wide">Description: </label>
+
+				<div class="indent-right wide">
+					<textarea class="form-control Q3-width" data-bind="textInput:l().description"></textarea>
+				</div>
+			</div>
 		</form>
-	</div>
 
 	<div class="panel-footer row f-row-w f-vcenter f-hcenter">
 		<div class="tall content Q3-width">
 			<button class="onseem-midleft mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
 				<i class="material-icons">add</i>
 			</button>
-			<div class="indent-right x-scroll f-row-w f-vcenter f-hcenter" data-bind="foreach:c.profiles">
+			<div class="indent-right x-scroll f-row-nw f-vcenter f-hcenter" data-bind="foreach:c.profiles">
 				<div class="shift-left shift-right">
 					<img class="fill thumbnail mdl-shadow--4dp " border="0" data-bind="attr: { src:image, alt:fullname }, click:$parent.loadProfile" >
 				</div>

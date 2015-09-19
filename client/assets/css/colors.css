@@ -1,13 +1,8 @@
-.blue-A400 {
-	background-color:#2979ff;
-}
+.blue { background-color:#2979ff; }
+.blue-A400 { background-color:#2979ff; }
 
-.cyan-300 {
-	background-color: #4DD0E1;
-	color: #4DD0E1;
-	background:#4DD0E1;
-}
+.cyan { background-color: #4DD0E1; }
+.cyan-300 { background-color: #4DD0E1; }
 
-.purple-A100 {
-	background-color: #ea80fc;
-}
+.purple { background-color: #ea80fc; }
+.purple-A100 { background-color: #ea80fc; }

@@ -11,18 +11,25 @@
 
 
 .f-row-w{
-	display: flex;
+	display:flex;
 	flex-flow:row wrap;
+	justify-content:space-around;
+}
+.f-col-w {
+	display:flext;
+	flex-flew:column wrap;
+	justify-content:space-between;
 }
 .f-row-nw {
-	display: flex;
-	flex-flow: row nowrap;
+	display:flex;
+	flex-flow:row nowrap;
+	justify-content:space-around;
 }
 
 .f-vcenter {
 	align-items:center;
 	justify-content:space-around;
-	align-content:flex-start;
+	align-content:space-between;
 }
 
 
@@ -40,6 +47,26 @@
 	overflow-y:hidden;
 }
 
-.aside {
-	flex: 1 1;
+.panel {
+	display: flex;
+	flex-flow:row wrap;
+	align-items:center;
+	justify-content:space-around;
+	align-content:space-between;
+	padding: 10px;
+	overflow:auto;
+}
+
+.f-aside {
+	flex:1 1;
+}
+.f-big { 
+	flex:2 1;
+}
+.f-little {
+	flex:1 1;
+}
+
+.panel-footer { 
+	align-self:flex-end; 
 }
