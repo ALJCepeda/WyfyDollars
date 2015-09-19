@@ -1,110 +1,112 @@
 <style type="text/css">
-	.blue-A400 {
-		background-color:#2979ff;
+	#profileCard {
+		min-width:280px;
+		max-width:350px;
 	}
 
-	.cyan-300 {
-		background-color: #4DD0E1;
-		color: #4DD0E1;
-		background:#4DD0E1;
-	}
-
-	.purple-A100 {
-		background-color: #ea80fc;
+	.panel > form {
+		min-width:350px;
 	}
 </style>
-<div class="mdl-card mdl-shadow--16dp" style="position:absolute; right:10%; top:-60px; z-index:4;">
-	<div class="mdl-card__title">
-		<h2 class="mdl-card__title-text" style="font-size:20px" data-bind="text:l().fullname"></h2>
-	</div>
-	
-	<div class="mdl-card__media flex-center" data-bind="css: { 'cyan-300': l().gender() === 'm', 'purple-A100': l().gender() === 'f' }">
-    	<img width="173" height="157" border="0" alt="" style="padding:10px;" data-bind="attr: { 'src':l().image }">
-  	</div>
-	
-	<div class="mdl-card__supporting-text">
-		<span data-bind="text:l().description"></span>
-	</div>
 
-	<div class="flex-horizontal">
-		<button class="btn btn-primary btn-flat btn-material-light-green-800">
- 			Submit
-			<div class="ripple-wrapper"></div>
-		</button>
 
-		<button class="btn btn-primary btn-flat btn-material-blue-grey-500">
- 			Cancel
-			<div class="ripple-wrapper"></div>
-		</button>
-	</div>
-</div>
+<div class="panel Q3 mdl-shadow--2dp">
+	<div class="wide Q3-height f-row-w f-vcenter">
+		<div id="profileCard" class="mdl-card mdl-shadow--16dp aside ">
+			<div class="mdl-card__title">
+				<h2 class="mdl-card__title-text" style="font-size:20px" data-bind="text:l().fullname"></h2>
+			</div>
+			
+			<div class="mdl-card__media flex-center" data-bind="css: { 'cyan-300': l().gender() === 'm', 'purple-A100': l().gender() === 'f' }">
+		    	<img width="173" height="157" border="0" alt="" style="padding:10px;" data-bind="attr: { 'src':l().image }">
+		  	</div>
+			
+			<div class="mdl-card__supporting-text">
+				<span data-bind="text:l().description"></span>
+			</div>
 
-<div class="panel mdl-shadow--2dp">
+			<div class="row f-row-w f-vcenter">
+				<button class="btn btn-primary btn-flat btn-material-light-green-800">
+		 			Submit
+					<div class="ripple-wrapper"></div>
+				</button>
 
-	<form class="flex-horizontal" style="width:60%; height:75%; padding:20px;">
-		<div class="flex-horizontal" style="width:100%;">
-			<label style="width:100%">Name:</label>
-			<div class="flex-horizontal" style="padding-left:30px;width:80%">
-				<label class="form-control" data-bind="visible:(editing() !== 'first'), text:l().firstname, click:edit('first')"></label>
-				<input class="form-control" type="text" placeholder="Firstname..." data-bind="visible: editing_first, textInput:l().firstname, hasFocus:stopEdit"/>
-
-				<input class="form-control" type="text" placeholder="Middlename..." data-bind="textInput:l().middlename" />
-				<input class="form-control" type="text" placeholder="Lastname..." data-bind="textInput:l().lastname" />		
+				<button class="btn btn-primary btn-flat btn-material-blue-grey-500">
+		 			Cancel
+					<div class="ripple-wrapper"></div>
+				</button>
 			</div>
 		</div>
 
-		<div class="flex-horizontal" style="width:50%;">
-			<label style="width:100%">Birthday: </label>
-			<div style="padding-left:30px;">
-				<select class="form-control" placeholder="Month..." data-bind="options:months(), value:l().birthmonth"></select>
-  				<select class="form-control" placeholder="Days..." data-bind="options:days, value:l().birthday"></select>
-  				<select class="form-control" placeholder="Years..." data-bind="options:years(), value:l().birthyear"></select>
-  			</div>
-		</div>
+		<form class="aside form f-row-w f-vcenter Q3-height" style="max-width:450px;">
+			<div class="wide Q1-height f-row-w f-vcenter">
+				<label class="wide">Name:</label>
+				<div class="indent-right wide f-now-w f-vcenter">
+					<label class="form-control" data-bind="visible:(editing() !== 'first'), text:l().firstname, click:edit('first')"></label>
+					<input class="form-control" type="text" placeholder="Firstname..." data-bind="visible: editing_first, textInput:l().firstname, hasFocus:stopEdit"/>
+					<input class="form-control" type="text" placeholder="Middlename..." data-bind="textInput:l().middlename" />
+					<input class="form-control" type="text" placeholder="Lastname..." data-bind="textInput:l().lastname" />		
+				</div>
+			</div>
 
-		<div class="flex-horizontal" style="width:40%;">
-			<label style="width:100%">Gender: </label>
+			<div class="wide Q1-height f-row-w">
+				<div class="aside">
+					<label class="wide">Birthday: </label>
+					<div class="indent-right">
+						<select class="form-control" placeholder="Month..." data-bind="options:months(), value:l().birthmonth"></select>
+		  				<select class="form-control" placeholder="Days..." data-bind="options:days, value:l().birthday"></select>
+		  				<select class="form-control" placeholder="Years..." data-bind="options:years(), value:l().birthyear"></select>
+		  			</div>
+	  			</div>
 
-  			<div style="padding-left:30px;">
-  				<select class="form-control" placeholder="Gender..." data-bind="value:l().gender">
-  					<option value="m">Male</option>
-  					<option value="f">Female</option>
-  				</select>
-  			</div>
-  		</div>
+	  			<div class="aside">
+	  				<label class="wide">Gender: </label>
 
-  		<div class="flex-horizontal" style="width:50%;">
-  			<label style="width:100%">Email: </label>
+		  			<div class="indent-right wide">
+		  				<select class="form-control" placeholder="Gender..." data-bind="value:l().gender">
+		  					<option value="m">Male</option>
+		  					<option value="f">Female</option>
+		  				</select>
+		  			</div>
+	  			</div>
+			</div>
 
-  			<div style="padding-left:30px; width:100%">
-  				<input class="form-control" type="text" placeholder="Email..." data-bind="value:l().email" />
-  			</div>
-  		</div>
+	  		<div class="wide Q1-height f-row-w f-vcenter">
+	  			<div class="aside">
+		  			<label class="wide">Email: </label>
 
-  		<div class="flex-horizontal" style="width:40%;">
-  			<label style="width:100%">Image: </label>
+		  			<div class="indent-right wide">
+		  				<input class="form-control" type="text" placeholder="Email..." data-bind="value:l().email" />
+		  			</div>
+	  			</div>
 
-  			<div style="padding-left:30px; width:100%">
-  				<input class="form-control" type="text" placeholder="URL..." data-bind="value:l().image"/>
-  			</div>
-  		</div>
+	  			<div class="aside">
+	  				<label class="wide">Image: </label>
 
-  		<div class="flex-horizontal" style="width:100%;">
-  			<label style="width:100%">Description: </label>
+		  			<div class="indent-right wide">
+		  				<input class="form-control" type="text" placeholder="URL..." data-bind="value:l().image"/>
+		  			</div>
+		  		</div>
+	  		</div>
 
-  			<div style="padding-left:30px; width:80%; height:50%">
-  				<textarea class="form-control" style="height:100%;width:100%" data-bind="textInput:l().description"></textarea>
-  			</div>
-  		</div>
-	</form>
-	<div class="panel-footer">
-		<div class="content flex-center">
+	  		<div class="Q1-height wide f-row-w f-vcenter">
+	  			<label class="wide">Description: </label>
+
+	  			<div class="indent-right wide">
+	  				<textarea class="form-control Q3-width" data-bind="textInput:l().description"></textarea>
+	  			</div>
+	  		</div>
+		</form>
+	</div>
+
+	<div class="panel-footer row f-row-w f-vcenter f-hcenter">
+		<div class="tall content Q3-width">
 			<button class="onseem-midleft mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
 				<i class="material-icons">add</i>
 			</button>
-			<div class="flex-horizontal-scroll" style="padding-left:35px;" data-bind="foreach:c.profiles">
-				<div style="margin-right:20px">
-					<img class="mdl-shadow--4dp" style="height:100px; width:100px;" border="0" data-bind="attr: { src:image, alt:fullname }, click:$parent.loadProfile" >
+			<div class="indent-right x-scroll f-row-w f-vcenter f-hcenter" data-bind="foreach:c.profiles">
+				<div class="shift-left shift-right">
+					<img class="fill thumbnail mdl-shadow--4dp " border="0" data-bind="attr: { src:image, alt:fullname }, click:$parent.loadProfile" >
 				</div>
 			</div>
 		</div>

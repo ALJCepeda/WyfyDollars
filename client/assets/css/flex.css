@@ -1,0 +1,45 @@
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-horizontal {
+	display: flex;
+	flex-flow:row wrap;
+}
+
+
+.f-row-w{
+	display: flex;
+	flex-flow:row wrap;
+}
+.f-row-nw {
+	display: flex;
+	flex-flow: row nowrap;
+}
+
+.f-vcenter {
+	align-items:center;
+	justify-content:space-around;
+	align-content:flex-start;
+}
+
+
+.flex-pull-right {
+	display: felx;
+	flex-flow:row nowrap;
+}
+
+.f-hcenter {
+	justify-content:center;
+}
+
+.x-scroll {
+	overflow-x:scroll;
+	overflow-y:hidden;
+}
+
+.aside {
+	flex: 1 1;
+}
