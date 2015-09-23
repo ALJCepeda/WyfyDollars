@@ -21,39 +21,43 @@ define(['services/injector'],
 					//We assume there's an index page at the end of path that needs to be injected
 					var nomodel = !_.isUndefined(options.nomodel) ? options.nomodel : false; //By default we attempt to bind a model to the view
 					$('#navigation_tabbar').css('display', 'none'); //Tabbar is not needed if we're injecting an index page
-					self.displayIndex(path, containerID, injectedID, nomodel, complete);
+					this.displayView(containerID, path+'/index', complete, nomodel);
 				} else {
 					$('#navigation_tabbar').css('display', 'block');
-					self.bindModel(options.tabmodel);
+					self.model(options.tabmodel);
 				}
 			}
 
-			this.displayIndex = function(path, containerID, injectedID, nomodel) {
-				this.displayView(path+'/index', containerID, injectedID, nomodel);
-			}
+			this.displayView = function(containerID, path, complete, nomodel) {
+				complete = (_.isUndefined(complete)) ? function() { } : complete;
+				nomodel = (_.isUndefined(nomodel)) ? false : nomodel;
 
-			this.displayView = function(path, containerID, injectedID, nomodel) {
 				var viewpath = 'app/views/'+ path +'.html';
 				var injector = new Injector();
 
-				if(_.isUndefined(nomodel) || nomodel === false) {
+				if(nomodel === false) {
 					var modelpath = 'viewmodels/' + path;
-					injector.injectDynamic(viewpath, modelpath, containerID, injectedID,
+					injector.injectDynamic(containerID, viewpath, modelpath,
 						function() {
 							self.path = path;
+
+							//Call onLoad on model if one exists
+							if(_.isFunction(injector.model.onLoad)) {
+								injector.model.onLoad();
+							}
+
+							complete(injector);
 					});
 				} else {
-					injector.injectStatic(viewpath, containerID, injectedID,
+					injector.injectStatic(containerID, viewpath,
 						function() {
 							self.path = path;
+							complete(injector);
 					});
 				}
 			}
-			this.bindModel = function(model) {
-				self.model(model);
-			}
 		}
 
-		return Navigator;
+		return new Navigator();
 	}
 );

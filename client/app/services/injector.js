@@ -4,48 +4,52 @@ define([], function() {
 		this.view;
 		this.model;
 		this.errors = [];
+ 		
+ 		this.inject = function(containerID, html, model, complete) {
+ 			self.injectHTML(containerID, html);
 
-		this.injectDynamic = function(viewpath, modelpath, containerID, injectedID, complete) {
+ 			self.refreshDOM(function() {
+
+ 				self.bindModel(containerID, model);
+ 				
+ 				self.view = html;
+ 				self.model = model;
+
+ 				if(_.isFunction(complete)) { complete(); }
+ 			});
+ 		};
+
+ 		this.injectView = function(containerID, html, complete) {
+ 			self.injectHTML(containerID, html);
+
+ 			self.refreshDOM(function() {
+ 				self.view = html;
+ 				self.model = {};
+
+ 				if(_.ifFunction(complete)) { complete(); };
+ 			})
+ 		};
+
+		this.injectDynamic = function(containerID, viewpath, modelpath, complete) {
 			if(!_.isFunction(complete)) { complete = function() { }; }
 
 			self.fetchView(viewpath, function(html) {
 				if(_.isUndefined(html)) { complete(); return; }
 		
 				self.fetchModel(modelpath, function(vm) {
-					self.injectHTML(containerID, html);
-					
-					self.refreshDOM(function() {
-						self.bindModel(containerID, vm);
-						
-						self.view = html;
-						self.model = vm;
-						complete();	
-					});
+					self.inject(containerID, html, vm, complete);
 				});
 			});
-		}
+		};
 
-		this.injectStatic = function(viewpath, containerID, injectedID, complete) {
+		this.injectStatic = function(containerID, viewpath, complete) {
 			if(!_.isFunction(complete)) { complete = function() { }; }
 
 			this.fetchView(viewpath, function(html) {
 				if(_.isUndefined(html)) { complete(); return; }
 
-				vself.injectHTML(containerID, html);
-				self.refreshDOM(function() {
-					self.view = html;
-					delete self.model;
-					complete();
-				});
+				self.injectView(containerID, html, complete);
 			});
-		}
-
-		this.wrapHTML = function(ID, html) {
-			var div = document.createElement('div');
-			div.innerHTML = html;
-			div.id = ID;
-
-			return div;
 		}
 
 		this.fetchModel = function(modelpath, complete) {
@@ -70,9 +74,12 @@ define([], function() {
 
 		this.bindModel = function(containerID, model) {
 			var element = $('#'+containerID)[0];
-			//Remove previous bindings
-			ko.cleanNode(element);
-			ko.applyBindings(model, element);
+
+			if(! _.isUndefined(element)) {
+				//Remove previous bindings
+				ko.cleanNode(element);
+				ko.applyBindings(model, element);
+			}
 
 			//This needs to be put somewhere else
 			//Like a final page configuration after navigator loads a page

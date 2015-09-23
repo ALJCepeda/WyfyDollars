@@ -50,11 +50,11 @@
 .panel {
 	display: flex;
 	flex-flow:row wrap;
-	align-items:center;
-	justify-content:space-around;
+	align-items:flex-start;
+	justify-content:flex-start;
 	align-content:space-between;
 	padding: 10px;
-	overflow:auto;
+	overflow:visible;
 }
 
 .f-aside {

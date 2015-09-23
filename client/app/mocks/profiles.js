@@ -27,5 +27,17 @@ define(['models/profile'], function(Profile) {
 	kassie.image('https://scontent-sea1-1.xx.fbcdn.net/hphotos-xpf1/t31.0-8/1015987_10205135422677514_1699683285411087182_o.jpg');
 	kassie.description('A sweet girl that that\'s always eager to please but has too much energy to stop listen');
 
-	return [ damian, kassie ];
+	return { 
+		detailed: { 1392:damian, 1942:kassie }, 
+		ref: { 
+			1392:{ 
+				image:damian.image, 
+				fullname:damian.fullname
+			},
+			1942:{
+				image:kassie.image,
+				fullname:kassie.fullname
+			}
+		}
+	};
 });

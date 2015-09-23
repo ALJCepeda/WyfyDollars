@@ -1,12 +1,18 @@
-define(['composers/profiles/modify'], 
-	function(composer) {
+define(['viewmodels/widgets/profiler'], 
+	function(Profiler) {
 		var Model = function() {
 			var self = this;
 
+			var p = new Profiler();
+			this.p = p; //P is for profiler
+			p.showAllBtn(false)
 			
-			var c = composer;
-			var l = ko.observable(c.profiles[0]);
-			this.c = c;
+			this.onLoad = function() {
+				p.injectSelf('profiler');	
+			};
+			
+
+			var l = p.selected;
 			this.l = l; //L is for loaded profile
 
 			this.calendar = {
@@ -56,7 +62,7 @@ define(['composers/profiles/modify'],
 			};
 			this.days = ko.pureComputed(function() {
 				var result = [];
-				debugger;
+
 				for(var day=1; day <= self.calendar[l().birthmonth()]; day++) {
 					result.push(day);
 				}
@@ -71,6 +77,8 @@ define(['composers/profiles/modify'],
 
 				return result;
 			};
+
+			
 		}
 
 		return new Model();

@@ -17,8 +17,7 @@ define([], function(){
 					{ name:'Modify', path:'#chores/modify' }
 				]
 			}
-		}, 
-
+		},
 		profiles: {
 			tabmodel: {
 				title: 'Profiles',

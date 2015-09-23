@@ -1,6 +1,5 @@
 define(['resources/routemap', 'resources/user', 'services/navigator'], 
-	function(routemap, user, Navigator){
-		var navigation = new Navigator();
+	function(routemap, user, navigation){
 
 		var Router = Backbone.Router.extend({
 			parent: '/',
@@ -13,19 +12,28 @@ define(['resources/routemap', 'resources/user', 'services/navigator'],
 		  		}
 		  	},
 		  	
-		  	parentRoute: function(par) {
-		  		this.parent = par;
-		  		navigation.display(par, routemap[par]);
+		  	parentRoute: function(parent) {
+		  		this.parent = parent;
+		  		navigation.display(parent, routemap[parent]);
+		  		this.loadOptions(parent);
 		  	},
 
-		  	childRoute:function(par, child) {
-		  		var path = par + '/' + child;
-		  		if(this.parent !== par) {
-		  			this.navigate(par, { trigger:true });
+		  	childRoute:function(parent, child) {
+		  		var path = parent + '/' + child;
+		  		if(this.parent !== parent) {
+		  			this.navigate(parent, { trigger:true });
 		  			this.navigate(path);
 		  		}
 
-		  		navigation.displayView(path, 'pageContainer', path);
+		  		navigation.displayView('pageContainer', path,
+		  			function() {
+		  				this.loadOptions(parent, child);
+		  		}.bind(this));
+		  	},
+
+		  	loadOptions:function(parent, child) {
+		  		child = (_.isUndefined(child)) ? "" : child;
+		  		var options = routemap[parent + child];
 		  	}
 		});
 

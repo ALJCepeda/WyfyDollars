@@ -1,6 +1,6 @@
-<div class="panel mdl-shadow--2dp">
+<div class="panel Q3 mdl-shadow--2dp">
 	<div class="mdl-grid mdl-grid--no-spacing flex-center step-down">
-		<div class="draggable content flex-center mdl-cell mdl-cell--10-col">
+		<div class="draggable content flex-center">
 			<button class="onseem-topright mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
 				<i class="material-icons">add</i>
 			</button>
@@ -16,7 +16,7 @@
 				<tbody data-bind="foreach: chores">
 					<tr>
 						<td>
-							<a href="#" data-bind="click:$parent.editChore"><i class="material-icons">edit</i></a>
+							<a data-bind="click:$parent.editChore, attr:{ href:'#edit/' + id }"><i class="material-icons">edit</i></a>
 						</td>
 
 						<!-- ko ifnot:editable -->
@@ -36,4 +36,6 @@
 			</table>
 		</div>
 	</div>
+
+	<div id="profiler" class="panel-footer row f-row-w f-vcenter f-hcenter wide"></div>
 </div>
