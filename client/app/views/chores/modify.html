@@ -1,6 +1,6 @@
 <div class="panel Q3 mdl-shadow--2dp">
-	<div class="mdl-grid mdl-grid--no-spacing flex-center step-down">
-		<div class="draggable content flex-center">
+	<div class="wide mdl-grid mdl-grid--no-spacing flex-center step-down">
+		<div class="draggable content flex-center wide">
 			<button class="onseem-topright mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
 				<i class="material-icons">add</i>
 			</button>
@@ -16,9 +16,10 @@
 				<tbody data-bind="foreach: chores">
 					<tr>
 						<td>
-							<a data-bind="click:$parent.editChore, attr:{ href:'#edit/' + id }"><i class="material-icons">edit</i></a>
+							<a href="javascript:void(0)">
+								<i class="material-icons">settings_overscan</i>
+							</a>
 						</td>
-
 						<!-- ko ifnot:editable -->
 						<td data-bind='text:name'>name</td>
 						<td data-bind='text:description'>description</td>
@@ -29,7 +30,8 @@
 						<!-- /ko -->
 
 						<td>
-							<a href="#" data-bind="click:$parent.removeChore"><i class="material-icons">delete</i></a>
+							<a data-bind="attr:{ href:'#chores/modify/edit/' + id }"><i class="material-icons">edit</i></a>
+							<a data-bind="click:$parent.removeChore, attr:{ href:'#chores/modify/delete/' + id}"><i class="material-icons">delete</i></a>
 						</td>
 					</tr>
 				</tbody>

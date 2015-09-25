@@ -1,18 +1,19 @@
-define(['services/injector', 'mocks/profiles'], function(Injector, datasource) {
+define(['services/injector', 'datasources/profile'], function(Injector, ProfileDS) {
 	var Profiler = function(viewURL) {
 		var self = this;
-		this.view = (_.isUndefined(viewURL)) ? "app/views/widgets/profiler.html" : viewURL;
+		this.view = (_.isUndefined(viewURL)) ? "app/views/widgets/profiler.html" : viewURL;		
 
-		this.profiles = datasource;
-		this.selected = ko.observable(this.profiles[0]);
+		var profile = new ProfileDS();
+		this.ds = profile;
+
+		this.selected = ko.observable(profile.with.ID(1392));
 		this.showAllBtn = ko.observable(false);
 
-		this.clickedProfile = function(profile) {
-			self.selected(profile);
+		this.clickedID = function(id) {
+			self.selected(profile.with.ID(id));
 		};
-
-		this.deleteProfile = function(profile) {
-			self.profiles.remove(profile);
+		this.imageFor = function(id) {
+			return profile.with.ID(id).image;
 		};
 
 		this.injectSelf = function(containerID, complete) {
@@ -25,12 +26,8 @@ define(['services/injector', 'mocks/profiles'], function(Injector, datasource) {
 			});
 		};
 
-		this._clickedAllBtn = function() {
-			self.clickedAllBtn();
-		};
-		this.clickedAllBtn = function() {
-
-		};
+		this._clickedAllBtn = function() { self.clickedAllBtn(); };
+		this.clickedAllBtn = function() { };
 	}
 
 	return Profiler;

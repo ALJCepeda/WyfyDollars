@@ -28,8 +28,11 @@ define(['models/profile'], function(Profile) {
 	kassie.description('A sweet girl that that\'s always eager to please but has too much energy to stop listen');
 
 	return { 
-		detailed: { 1392:damian, 1942:kassie }, 
-		ref: { 
+		detailed: { 
+			1392:damian, 
+			1942:kassie 
+		}, 
+		refs: { 
 			1392:{ 
 				image:damian.image, 
 				fullname:damian.fullname

@@ -6,7 +6,8 @@ define([], function(){
 	return {
 		routes: {
 			':parent':'parentRoute',
-			':parent/:child':'childRoute'
+			':parent/:child':'childRoute',
+			':parent/:child/*action':'actionRoute'
 		},
 
 		chores: {

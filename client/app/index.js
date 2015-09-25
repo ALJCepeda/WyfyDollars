@@ -3,6 +3,7 @@ define(['resources/routemap', 'resources/user', 'services/navigator'],
 
 		var Router = Backbone.Router.extend({
 			parent: '/',
+			child:'',
 		  	routes: routemap.routes,
 		  	execute: function(callback, args, name) {
 		  		if(callback) {
@@ -25,10 +26,22 @@ define(['resources/routemap', 'resources/user', 'services/navigator'],
 		  			this.navigate(path);
 		  		}
 
+		  		this.child = child;
 		  		navigation.displayView('pageContainer', path,
 		  			function() {
 		  				this.loadOptions(parent, child);
 		  		}.bind(this));
+		  	},
+
+		  	actionRoute:function(parent, child, action) {
+		  		var childPath = parent + '/' + child;
+		  		var path = childPath + '/' + action;
+		  		if(this.child != child) {
+		  			this.navigate(childPath, { trigger:true });
+		  			this.navigate(path);
+		  		}
+
+		  		
 		  	},
 
 		  	loadOptions:function(parent, child) {
