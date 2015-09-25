@@ -10,6 +10,9 @@ define(['viewmodels/widgets/profiler'], function(Profiler) {
 			p.injectSelf('profiler');
 		};
 		
+		this.onAction = function(action) {
+			console.log(action);
+		}
 
 		this.editable_chores = ko.observableArray([]);
 		this.chores = ko.observableArray([

@@ -4,6 +4,8 @@ define(['resources/routemap', 'resources/user', 'services/navigator'],
 		var Router = Backbone.Router.extend({
 			parent: '/',
 			child:'',
+			loading:null,
+			model:null,
 		  	routes: routemap.routes,
 		  	execute: function(callback, args, name) {
 		  		if(callback) {
@@ -27,9 +29,19 @@ define(['resources/routemap', 'resources/user', 'services/navigator'],
 		  		}
 
 		  		this.child = child;
-		  		navigation.displayView('pageContainer', path,
-		  			function() {
-		  				this.loadOptions(parent, child);
+		  		this.loading = new Promise(function(resolve, reject) {
+		  			navigation.displayView('pageContainer', path,
+			  			function(injector) {
+			  				if(injector.errors.length === 0) {
+			  					debugger;
+			  					this.loadOptions(parent, child);
+			  					resolve({ view:injector.view, model:injector.model });
+			  				} else {
+			  					//Do some kind of error resolving
+			  					console.dir(injector.errors);
+			  					reject();
+			  				}
+			  		}.bind(this));
 		  		}.bind(this));
 		  	},
 
@@ -41,7 +53,11 @@ define(['resources/routemap', 'resources/user', 'services/navigator'],
 		  			this.navigate(path);
 		  		}
 
-		  		
+		  		this.loading.then(function(vm) {
+			  		if(_.isObject(vm.model) && _.isFunction(vm.model.onAction)) {
+			  			vm.model.onAction(action);
+			  		}
+			  	});
 		  	},
 
 		  	loadOptions:function(parent, child) {
