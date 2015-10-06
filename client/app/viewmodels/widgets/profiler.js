@@ -6,12 +6,12 @@ define(['services/injector', 'datasources/profile'], function(Injector, ProfileD
 		var ds = new ProfileDS();
 		this.ds = ds;
 
-		this.selected = ko.observable(ds.select.profile.withID(1392));
 		this.showAllBtn = ko.observable(false);
+		this.selectedID = ko.observable(1392);
+		this.selected = ko.computed(function() { return ds.select.profile.withID(self.selectedID()); });
+		
 
-		this.clickedID = function(id) {
-			self.selected(ds.select.profile.withID(id));
-		};
+		
 		this.imageFor = function(id) {
 			return ds.select.profile.withID(id).image;
 		};
@@ -26,7 +26,12 @@ define(['services/injector', 'datasources/profile'], function(Injector, ProfileD
 			});
 		};
 
+		this._clickedID = function(id) {
+			self.selectedID(id);
+			self.clickedID();
+		};
 		this._clickedAllBtn = function() { self.clickedAllBtn(); };
+		this.clickedID = function() { };
 		this.clickedAllBtn = function() { };
 	}
 
