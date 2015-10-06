@@ -1,27 +1,9 @@
-define(['mocks/profiles'], function(data) {
-	var Datasource = function() {
+define(['mocks/profiles', 'abstracts/dataselect'], function(data, DataSelect) {
+	var ProfileDatasource = function() {
 		var self = this;
-		this.profile = self;
-		this.with = {
-			ID: function(id) {
-				return self.data().refs[id];
-			}
-		};
+		this.select = new DataSelect(data, 'profile');
+		this.profiles = this.select.allIDs();
+	};
 
-		this.has = {
-			ID: function(id) {
-				return !_.isUndefined(self.data.refs[id]);
-			}
-		};
-		
-		this.data = ko.observable(data);
-		this.profiles = ko.computed(function() { return Object.keys(self.data().refs); });
-
-		this.delete = function(id) {
-			delete self.data.detailed[id];
-			delete self.data.refs[id];
-		}
-	}
-
-	return Datasource;
+	return ProfileDatasource;
 })

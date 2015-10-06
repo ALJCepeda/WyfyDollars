@@ -1,17 +1,22 @@
-define(['viewmodels/widgets/profiler'], function(Profiler) {
+define([], function() {
 	var VM = function() {
 		var self = this;
 		
-		var p = new Profiler();
-		this.p = p; //p is for profiler
-		p.showAllBtn(true);
 
 		this.onLoad = function() {
-			p.injectSelf('profiler');
+			
 		};
 		
-		this.onAction = function(action) {
+		this.onAction = function(param) {
+			var steps = param.split("/");
+			var action = steps[0];
+
 			console.log(action);
+			switch(action) {
+				case 'edit':
+					var id = param[1];
+					this.edit(id);
+			}
 		}
 
 		this.editable_chores = ko.observableArray([]);
@@ -21,11 +26,12 @@ define(['viewmodels/widgets/profiler'], function(Profiler) {
 			{ id:3, name:'Feed Dogs', editable:ko.observable(false), description:'A single overlapping scoop of kibble for both dogs. Dogs must wait before being allowed to eat' }
 		]);
 
-		this.editChore = function(chore) {
+		this.edit = function(id) {
+
 			chore.editable(!chore.editable());
 		};
 
-		this.removeChore = function(chore) {
+		this.remove = function(chore) {
 			self.chores.remove(chore);
 		};
 	};

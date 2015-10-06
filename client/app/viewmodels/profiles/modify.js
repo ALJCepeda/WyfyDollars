@@ -14,6 +14,7 @@ define(['viewmodels/widgets/profiler'],
 
 			var l = p.selected;
 			this.l = l; //L is for loaded profile
+			debugger;
 
 			this.calendar = {
 				'January' : 31,

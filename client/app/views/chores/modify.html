@@ -30,8 +30,8 @@
 						<!-- /ko -->
 
 						<td>
-							<a data-bind="attr:{ href:'#chores/modify/edit/' + id }"><i class="material-icons">edit</i></a>
-							<a data-bind="click:$parent.removeChore, attr:{ href:'#chores/modify/delete/' + id}"><i class="material-icons">delete</i></a>
+						 	<a data-bind="attr:{ href:'#chores/modify/edit/' + id }"><i class="material-icons">edit</i></a>
+							<a data-bind="click:$parent.remove, attr:{ href:'#chores/modify/delete/' + id}"><i class="material-icons">delete</i></a>
 						</td>
 					</tr>
 				</tbody>
@@ -41,6 +41,4 @@
 	<div class="blue wide" style="flex:1 2; min-height:500px;"></div>
 	<div style="flex:2 1; min-height:500px;"></div>
 	<div class="purple wide" style="flex:1 2; min-height:500px;"></div>
-
-	<div id="profiler" class="panel-footer row f-row-w f-vcenter f-hcenter wide"></div>
 </div>

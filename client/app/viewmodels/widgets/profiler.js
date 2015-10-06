@@ -3,17 +3,17 @@ define(['services/injector', 'datasources/profile'], function(Injector, ProfileD
 		var self = this;
 		this.view = (_.isUndefined(viewURL)) ? "app/views/widgets/profiler.html" : viewURL;		
 
-		var profile = new ProfileDS();
-		this.ds = profile;
+		var ds = new ProfileDS();
+		this.ds = ds;
 
-		this.selected = ko.observable(profile.with.ID(1392));
+		this.selected = ko.observable(ds.select.profile.withID(1392));
 		this.showAllBtn = ko.observable(false);
 
 		this.clickedID = function(id) {
-			self.selected(profile.with.ID(id));
+			self.selected(ds.select.profile.withID(id));
 		};
 		this.imageFor = function(id) {
-			return profile.with.ID(id).image;
+			return ds.select.profile.withID(id).image;
 		};
 
 		this.injectSelf = function(containerID, complete) {

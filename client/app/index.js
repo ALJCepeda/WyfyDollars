@@ -32,8 +32,7 @@ define(['resources/routemap', 'resources/user', 'services/navigator'],
 		  		this.loading = new Promise(function(resolve, reject) {
 		  			navigation.displayView('pageContainer', path,
 			  			function(injector) {
-			  				if(injector.errors.length === 0) {
-			  					debugger;
+			  				if(injector.errors.length === 0) { 
 			  					this.loadOptions(parent, child);
 			  					resolve({ view:injector.view, model:injector.model });
 			  				} else {
