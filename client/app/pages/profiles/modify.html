@@ -1,27 +1,34 @@
 <style type="text/css">
 	#profileCard {
 		max-width:350px;
+		min-width:240px;
 	}
 
-	@media screen and (max-width: 800px) {
-    	.panel > .f-aside {
-    		flex: auto;
-    	}
-
-    	.panel > form {
-    		min-width:0px;
-    	}
+	#editor {
+		max-width:550px;
+		min-width:330px;
 	}
 
-	@media screen and (max-width:450px) {
-		form .f-aside, .f-big, .f-little{
+	@media screen and (max-width:750px) {
+		.panel {
+			justify-content:center;
+		}
+	}
+
+	@media screen and (max-width:425px) {
+		#editor {
+			min-width:160px;
+			flex:auto;
+		}
+		#profileCard {
+			min-width:160px;
 			flex:auto;
 		}
 
-		.indent-right {
+		#editor .indent-right {
 			padding-left:0px;
 		}
-		.float-right {
+		#editor .float-right {
 			float:left;
 		}
 	}
@@ -29,7 +36,7 @@
 
 
 <div class="panel Q3 mdl-shadow--2dp indent">
-	<div id="editor"></div>
+	<div id="editor" class="Q3-height blue f-aside"></div>
 
 	<div id="profileCard" class="mdl-card mdl-shadow--16dp f-aside">
 		<div class="mdl-card__title">

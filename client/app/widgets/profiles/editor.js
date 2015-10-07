@@ -1,5 +1,7 @@
 define([], function() {
-	var ProfileEditor = function(profileOBS) {
+	var ProfileEditor = function(profileOBS, viewURL) {
+		this.view = _.isUndefined(viewURL) ? "app/widgets/profiles/editor.html" : viewURL;		
+
 		var self = this;
 		this.profile = ko.observable(profileOBS);
 		this.l =  this.profile//L is for loaded profile

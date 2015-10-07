@@ -6,7 +6,7 @@ define([], function() {
 		this.errors = [];
  		
  		this.inject = function(containerID, html, model, complete) {
- 			self.injectHTML(containerID, html, isWidget);
+ 			self.injectHTML(containerID, html);
 
  			self.refreshDOM(function() {
  				self.bindModel(containerID, model);
