@@ -8,13 +8,13 @@
 			return self.data()[id];
 		};
 
-		this.allIDs = ko.computed(function() {
-			return Object.keys(self.data());
-		});
-
 		this.hasID = function(id) {
 			return !_.isUndefined(self.data()[id]);
 		};
+
+		this.allIDs = ko.computed(function() {
+			return Object.keys(self.data());
+		});
 	};
 
 	return Dataselect;

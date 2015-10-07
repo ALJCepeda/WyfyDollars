@@ -1,4 +1,4 @@
-define(['resources/routemap', 'resources/user', 'services/navigator'], 
+define(['resources/routemap', 'resources/user', 'resources/services/navigator'], 
 	function(routemap, user, navigation){
 
 		var Router = Backbone.Router.extend({

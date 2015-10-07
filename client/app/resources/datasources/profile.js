@@ -1,4 +1,4 @@
-define(['mocks/profiles', 'abstracts/dataselect'], function(data, DataSelect) {
+define(['mocks/profiles', 'resources/abstracts/dataselect'], function(data, DataSelect) {
 	var ProfileDatasource = function() {
 		var self = this;
 		this.data = ko.observable(data);
@@ -6,7 +6,7 @@ define(['mocks/profiles', 'abstracts/dataselect'], function(data, DataSelect) {
 		this.detailed = ko.computed(function() { return self.data().detailed; });
 
 		this.select = new DataSelect(this.detailed, 'profile');
-		this.profiles = ko.computed(function() { return self.select.allIDs(); });
+		this.profileIDs = ko.computed(function() { return self.select.allIDs(); });
 	};
 
 	return ProfileDatasource;

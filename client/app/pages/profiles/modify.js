@@ -1,4 +1,4 @@
-define(['viewmodels/widgets/profiler'], 
+define(['widgets/profiles/navigator'], 
 	function(Profiler) {
 		var Model = function() {
 			var self = this;

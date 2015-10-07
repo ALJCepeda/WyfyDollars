@@ -1,4 +1,4 @@
-define(['services/injector'],
+define(['resources/services/injector'],
 	function(Injector) {
 		var Navigator = function() {
 			var self = this;
@@ -32,11 +32,11 @@ define(['services/injector'],
 				complete = (_.isUndefined(complete)) ? function() { } : complete;
 				nomodel = (_.isUndefined(nomodel)) ? false : nomodel;
 
-				var viewpath = 'app/views/'+ path +'.html';
+				var viewpath = 'app/pages/'+ path +'.html';
 				var injector = new Injector();
 
 				if(nomodel === false) {
-					var modelpath = 'viewmodels/' + path;
+					var modelpath = 'pages/' + path;
 					injector.injectDynamic(containerID, viewpath, modelpath,
 						function() {
 							self.path = path;

@@ -1,4 +1,4 @@
-define(['abstracts/dataselect', 'mocks/chores'], function(Dataselect, data) {
+define(['resources/abstracts/dataselect', 'mocks/chores'], function(Dataselect, data) {
 	var ChoreDatasource = function() {
 		var self = this;
 		this.data = ko.observable(data);
