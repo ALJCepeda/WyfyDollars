@@ -1,23 +1,19 @@
    define([], function() {
-	var Dataselect = function(data, semanticID) {
+	var Dataselect = function(dataOBS, semanticID) {
 		var self = this;
-		this.data = data;
+		this.data = dataOBS;
 		this[semanticID] = this; //Used strictly for semantic reasons ex: select.profile.withID(2381)
 
 		this.withID = function(id) {
-			return self.data.detailed[id];
+			return self.data()[id];
 		};
 
-		this.allIDs = function() {
-			return Object.keys(self.data.detailed);
-		};
+		this.allIDs = ko.computed(function() {
+			return Object.keys(self.data());
+		});
 
 		this.hasID = function(id) {
-			return !_.isUndefined(self.data.detailed[id]);
-		};
-
-		this.delete = function(id) {
-			delete this.data[id];
+			return !_.isUndefined(self.data()[id]);
 		};
 	};
 

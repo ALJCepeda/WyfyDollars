@@ -32,7 +32,7 @@ define(['models/profile'], function(Profile) {
 			1392:damian, 
 			1942:kassie 
 		}, 
-		refs: { 
+		references: { 
 			1392:{ 
 				image:damian.image, 
 				fullname:damian.fullname
