@@ -1,7 +1,8 @@
 define([], function() {
-	var ProfileEditor = function() {
-		var l = p.selected;
-		this.l = l; //L is for loaded profile
+	var ProfileEditor = function(profileOBS) {
+		var self = this;
+		this.profile = ko.observable(profileOBS);
+		this.l =  this.profile//L is for loaded profile
 
 		this.calendar = {
 			'January' : 31,
@@ -32,7 +33,6 @@ define([], function() {
 			self.editing(field);
 		};
 		this.stopEdit = function(isEdit) {
-			debugger;
 			if(!isEdit) {
 				self.editing('');
 			}

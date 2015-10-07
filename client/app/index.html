@@ -51,24 +51,23 @@
                            <!-- Title -->
                            <span class="mdl-layout-title" data-bind="text: title">title</span>
                         </div>
-                        
-                        <!-- Tabs -->
+
                         <div class="mdl-layout__tab-bar mdl-js-ripple-effect" data-bind="foreach: tabs">
                             <a class="mdl-layout__tab" data-bind="text: name, attr: { 'href': path }"></a>
                         </div>
                     </header>
 
                     
-                    <main class="background fill" id="pageContainer"></main>
+                    <main class="mdl-layout__content"><section class="mdl-layout__tab-panel is-active"></section></main><!--Here only to squelch a bad google exception-->
 
-
+                    <div class="background fill" id="pageContainer"></div>
                 </div>
             </main>
         </div>
     </body>
     <script type="text/javascript">
         $(function() {
-            $.material.init();
+           // $.material.init();
         });
     </script>
 </html>

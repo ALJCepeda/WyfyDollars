@@ -36,9 +36,7 @@ define(['resources/routemap', 'resources/user', 'resources/services/navigator'],
 			  					this.loadOptions(parent, child);
 			  					resolve({ view:injector.view, model:injector.model });
 			  				} else {
-			  					//Do some kind of error resolving
-			  					console.dir(injector.errors);
-			  					reject();
+			  					reject(injector.errors);
 			  				}
 			  		}.bind(this));
 		  		}.bind(this));
@@ -55,6 +53,8 @@ define(['resources/routemap', 'resources/user', 'resources/services/navigator'],
 		  		this.loading.then(function(vm) {
 			  		if(_.isObject(vm.model) && _.isFunction(vm.model.onAction)) {
 			  			vm.model.onAction(action);
+			  		} else {
+			  			//Failed to load view, vm is an object with erros
 			  		}
 			  	});
 		  	},

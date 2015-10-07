@@ -5,11 +5,10 @@ define([], function() {
 		this.model;
 		this.errors = [];
  		
- 		this.inject = function(containerID, html, model, complete) {
- 			self.injectHTML(containerID, html);
+ 		this.inject = function(containerID, html, model, complete, isWidget) {
+ 			self.injectHTML(containerID, html, isWidget);
 
  			self.refreshDOM(function() {
-
  				self.bindModel(containerID, model);
  				
  				self.view = html;
@@ -23,7 +22,7 @@ define([], function() {
 			self.fetchView(widget.view, function(html) {
 				self.inject(containerID, html, widget, function() {
 					if(_.isFunction(complete)) { complete(); }
-				});
+				}, true);
 			});
  		}
 
@@ -75,9 +74,11 @@ define([], function() {
 			});
 		}
 
-		this.injectHTML = function(containerID, html) {
+		this.injectHTML = function(containerID, html, isWidget) {
 			var selector= '#' + containerID;
-			$(selector).html(html);
+			//There was an issue with $().html throwing a deprecated warning
+			//When injecting multiple widgets
+			$(selector)[0].innerHTML = html;
 		}
 
 		this.bindModel = function(containerID, model) {
@@ -106,7 +107,7 @@ define([], function() {
 		this.refreshDOM = function(callback, delay) {
 			delay = _.isUndefined(delay) ? 20 : delay;
 			setTimeout(function() {
-				componentHandler.upgradeDom();
+				//componentHandler.upgradeDom();
 				callback();
 			}, delay);
 		}
