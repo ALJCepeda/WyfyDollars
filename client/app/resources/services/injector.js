@@ -5,7 +5,7 @@ define([], function() {
 		this.model;
 		this.errors = [];
  		
- 		this.inject = function(containerID, html, model, complete, isWidget) {
+ 		this.inject = function(containerID, html, model, complete) {
  			self.injectHTML(containerID, html, isWidget);
 
  			self.refreshDOM(function() {
@@ -22,7 +22,7 @@ define([], function() {
 			self.fetchView(widget.view, function(html) {
 				self.inject(containerID, html, widget, function() {
 					if(_.isFunction(complete)) { complete(); }
-				}, true);
+				});
 			});
  		}
 
@@ -74,7 +74,7 @@ define([], function() {
 			});
 		}
 
-		this.injectHTML = function(containerID, html, isWidget) {
+		this.injectHTML = function(containerID, html) {
 			var selector= '#' + containerID;
 			//There was an issue with $().html throwing a deprecated warning
 			//When injecting multiple widgets
