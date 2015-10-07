@@ -9,13 +9,16 @@
 		min-width:330px;
 	}
 
-	@media screen and (max-width:750px) {
+	@media screen and (max-width:760px) {
 		.panel {
 			justify-content:center;
 		}
 		#profiler div {
 			width:100%;
 		}
+		#card { order:1; }
+		#editor { order:2; }
+		#navigator { order:3; }
 	}
 
 	@media screen and (max-width:425px) {
@@ -67,5 +70,5 @@
 		</div>
 	</div>
 
-	<div id="profiler" class="panel-footer row f-row-w f-vcenter f-hcenter wide"></div>
+	<div id="navigator" class="panel-footer row f-row-w f-vcenter f-hcenter wide"></div>
 </div>

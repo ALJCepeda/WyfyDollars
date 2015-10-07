@@ -3,8 +3,9 @@ define([], function() {
 		this.view = _.isUndefined(viewURL) ? "app/widgets/profiles/editor.html" : viewURL;		
 
 		var self = this;
-		this.profile = ko.observable(profileOBS);
-		this.l =  this.profile//L is for loaded profile
+		this.profile = profileOBS;
+		var l = this.profile
+		this.l =  l//L is for loaded profile
 
 		this.calendar = {
 			'January' : 31,

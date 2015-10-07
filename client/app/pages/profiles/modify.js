@@ -16,7 +16,7 @@ define(['resources/services/injector', 'widgets/profiles/navigator', 'widgets/pr
 			this.e = profileEditor;
 
 			this.onLoad = function() {
-				injector.injectWidget('profiler', p, function() {
+				injector.injectWidget('navigator', p, function() {
 					injector.injectWidget('editor', e);	
 				});
 			};
