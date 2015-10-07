@@ -1,4 +1,7 @@
-define(['resources/services/injector', 'resources/datasources/profile'], function(Injector, ProfileDS) {
+define(
+	['resources/services/injector', 'resources/datasources/profile'], 
+	function(Injector, ProfileDS) {
+	
 	var Profiler = function(viewURL) {
 		this.view = _.isUndefined(viewURL) ? "app/widgets/profiles/navigator.html" : viewURL;		
 
@@ -27,16 +30,6 @@ define(['resources/services/injector', 'resources/datasources/profile'], functio
 		this.clickedID = function() { };
 		this.clickAddBtn = function() { };
 		this.clickedAllBtn = function() { };
-		
-		this.injectSelf = function(containerID, complete) {
-			var injector = new Injector();
-			//Inject profile navigator
-			injector.fetchView(self.view, function(html) {
-				injector.inject(containerID, html, self, function() {
-					if(_.isFunction(complete)) { complete(); }
-				});
-			});
-		};
 	}
 
 	return Profiler;

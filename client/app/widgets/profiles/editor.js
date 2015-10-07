@@ -1,5 +1,8 @@
 define([], function() {
 	var ProfileEditor = function() {
+		var l = p.selected;
+		this.l = l; //L is for loaded profile
+
 		this.calendar = {
 			'January' : 31,
 			'February' : 28,

@@ -19,6 +19,14 @@ define([], function() {
  			});
  		};
 
+ 		this.injectWidget = function(containerID, widget, complete) {
+			self.fetchView(widget.view, function(html) {
+				self.inject(containerID, html, widget, function() {
+					if(_.isFunction(complete)) { complete(); }
+				});
+			});
+ 		}
+
  		this.injectView = function(containerID, html, complete) {
  			self.injectHTML(containerID, html);
 

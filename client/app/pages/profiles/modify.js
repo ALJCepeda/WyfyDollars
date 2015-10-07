@@ -1,20 +1,20 @@
-define(['widgets/profiles/navigator'], 
-	function(Profiler) {
+define(['resources/services/injector', 'widgets/profiles/navigator'], 
+	function(Injector, ProfileNavigator) {
 		var Model = function() {
 			var self = this;
 
-			var p = new Profiler();
+			var injector = new Injector();
+			var p = new ProfileNavigator();
 			this.p = p; //P is for profiler
-			p.showAllBtn(false)
+			p.showAllBtn(false);
+			p.showAddBtn(true);
 			
 			this.onLoad = function() {
-				p.injectSelf('profiler');	
+				injector.injectWidget('profiler', p);
 			};
-			
 
 			var l = p.selected;
 			this.l = l; //L is for loaded profile
-			debugger;
 
 			this.calendar = {
 				'January' : 31,
@@ -78,8 +78,6 @@ define(['widgets/profiles/navigator'],
 
 				return result;
 			};
-
-			
 		}
 
 		return new Model();
