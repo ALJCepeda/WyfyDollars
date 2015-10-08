@@ -9,26 +9,44 @@
 		min-width:330px;
 	}
 
-	@media screen and (max-width:760px) {
+	.panel_content {
+		display: flex;
+		flex-flow:row wrap;
+		align-items:flex-start;
+		justify-content:space-around;/*center;*/
+		align-content:space-between;
+	}
+
+	@media screen and (max-width:815px) {
 		.panel {
+			height:100%;
+			width:100%;
+
+		}
+		.panel-content {
+			padding-top: 30px;
 			justify-content:center;
 		}
 		#profiler div {
 			width:100%;
 		}
-		#card { order:1; }
-		#editor { order:2; }
+		#profileCard { 
+			order:1;
+			flex:auto; 
+		}
+		#editor { 
+			order:2;
+			flex:auto; 
+		}
 		#navigator { order:3; }
 	}
 
 	@media screen and (max-width:425px) {
 		#editor {
 			min-width:160px;
-			flex:auto;
 		}
 		#profileCard {
 			min-width:160px;
-			flex:auto;
 		}
 
 		#editor .indent-right {
@@ -40,34 +58,36 @@
 	}
 </style>
 
-<div class="panel indent Q3 mdl-shadow--2dp" style="height:auto;">
-	<div id="editor" class="Q3-height f-aside"></div>
+<div class="panel mdl-shadow--2dp">
+	<div class="panel-content indent-down fill row-w h-around v-top g-between">
+		<div id="editor" class="Q3-height f-aside"></div>
 
-	<div id="profileCard" class="mdl-card mdl-shadow--16dp f-aside" style="padding-top:300px;">
-		<div class="mdl-card__title">
-			<h2 class="mdl-card__title-text" style="font-size:20px" data-bind="text:l().fullname"></h2>
-		</div>
-		
-		<div class="mdl-card__media flex-center" data-bind="css: { 'cyan-300': l().gender() === 'm', 'purple-A100': l().gender() === 'f' }">
-	    	<img width="173" height="157" border="0" alt="" style="padding:10px;" data-bind="attr: { 'src':l().image }">
-	  	</div>
-		
-		<div class="mdl-card__supporting-text">
-			<span data-bind="text:l().description"></span>
+		<div id="profileCard" class="mdl-card mdl-shadow--16dp f-aside">
+			<div class="mdl-card__title">
+				<h2 class="mdl-card__title-text" style="font-size:20px" data-bind="text:l().fullname"></h2>
+			</div>
+			
+			<div class="mdl-card__media row-w h-center" data-bind="css: { 'cyan-300': l().gender() === 'm', 'purple-A100': l().gender() === 'f' }">
+		    	<img width="173" height="157" border="0" alt="" style="padding:10px;" data-bind="attr: { 'src':l().image }">
+		  	</div>
+			
+			<div class="mdl-card__supporting-text">
+				<span data-bind="text:l().description"></span>
+			</div>
+
+			<div class="row row-w v-center h-between">
+				<button class="btn btn-primary btn-flat btn-material-light-green-800">
+		 			Submit
+					<div class="ripple-wrapper"></div>
+				</button>
+
+				<button class="btn btn-primary btn-flat btn-material-blue-grey-500">
+		 			Cancel
+					<div class="ripple-wrapper"></div>
+				</button>
+			</div>
 		</div>
 
-		<div class="row f-row-w f-vcenter">
-			<button class="btn btn-primary btn-flat btn-material-light-green-800">
-	 			Submit
-				<div class="ripple-wrapper"></div>
-			</button>
-
-			<button class="btn btn-primary btn-flat btn-material-blue-grey-500">
-	 			Cancel
-				<div class="ripple-wrapper"></div>
-			</button>
-		</div>
+		<div id="navigator" class="panel-footer wide row-w v-center h-center"></div>
 	</div>
-
-	<div id="navigator" class="panel-footer row f-row-w f-vcenter f-hcenter wide"></div>
 </div>
