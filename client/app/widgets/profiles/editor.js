@@ -4,8 +4,8 @@ define([], function() {
 
 		var self = this;
 		this.profile = profileOBS;
-		var l = this.profile
-		this.l =  l//L is for loaded profile
+		var p = this.profile
+		this.p =  p//L is for loaded profile
 
 		this.calendar = {
 			'January' : 31,
@@ -54,7 +54,7 @@ define([], function() {
 		this.days = ko.pureComputed(function() {
 			var result = [];
 
-			for(var day=1; day <= self.calendar[l().birthmonth()]; day++) {
+			for(var day=1; day <= self.calendar[p().birthmonth()]; day++) {
 				result.push(day);
 			}
 

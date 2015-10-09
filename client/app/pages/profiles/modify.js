@@ -1,31 +1,39 @@
-define(['resources/services/injector', 'widgets/profiles/navigator', 'widgets/profiles/editor'], 
-	function(Injector, ProfileNavigator, ProfileEditor) {
+define(['resources/services/injector', 
+		'widgets/profiles/navigator', 
+		'widgets/profiles/editor',
+		'widgets/profiles/card'], 
+	function(Injector, ProfileNavigator, ProfileEditor, ProfileCard) {
 		var Model = function() {
 			var self = this;
 
-			var injector = new Injector();
-
 			var profileNavigator = new ProfileNavigator();
-			var p = profileNavigator;
-			this.p = profileNavigator; //P is for profiler
-			p.showAllBtn(false);
-			p.showAddBtn(true);
+			var n = profileNavigator;
+			this.n = profileNavigator; //n is for Navigator
+			n.showAllBtn(false);
+			n.showAddBtn(true);
 
-			var profileEditor = new ProfileEditor(p.selected);
-			var e = profileEditor;
+			var p = n.selected;
+			this.p = p; //p is for profile
+
+			var profileEditor = new ProfileEditor(p);
+			var e = profileEditor; //E is for editor
 			this.e = profileEditor;
 
+			var profileCard = new ProfileCard(p);
+			var c = profileCard;
+			this.c = profileCard;
+
 			this.onLoad = function() {
-				injector.injectWidget('navigator', p, function() {
-					injector.injectWidget('editor', e);	
-				});
+				var injector = new Injector();
+				injector.injectManyWidgets([
+					[ 'navigator', n ],
+					[ 'editor', e ],
+					[ 'card', c ]
+				]);
 			};
 
-			var l = p.selected;
-			this.l = l; //L is for loaded profile
-
 			this.loadProfile = function(profile) {
-				l(profile);
+				p(profile);
 			};
 		}
 

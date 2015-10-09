@@ -1,0 +1,25 @@
+<div class="mdl-card mdl-shadow--16dp">
+	<div class="mdl-card__title">
+		<h2 class="mdl-card__title-text" style="font-size:20px" data-bind="text:p().fullname"></h2>
+	</div>
+	
+	<div class="mdl-card__media row-w h-center" data-bind="css: { 'cyan-300': p().gender() === 'm', 'purple-A100': p().gender() === 'f' }">
+    	<img width="173" height="157" border="0" alt="" style="padding:10px;" data-bind="attr: { 'src':p().image }">
+  	</div>
+	
+	<div class="mdl-card__supporting-text">
+		<span data-bind="text:p().description"></span>
+	</div>
+
+	<div class="row row-w v-center h-between">
+		<button class="btn btn-primary btn-flat btn-material-light-green-800">
+ 			Submit
+			<div class="ripple-wrapper"></div>
+		</button>
+
+		<button class="btn btn-primary btn-flat btn-material-blue-grey-500">
+ 			Cancel
+			<div class="ripple-wrapper"></div>
+		</button>
+	</div>
+</div>

@@ -3,9 +3,9 @@
 		<label class="wide">Name:</label>
 
 		<div class="wide row-w h-between">
-			<input class="form-control" type="text" placeholder="Firstname..." data-bind="textInput:l().firstname"/>
-			<input class="form-control" type="text" placeholder="Middlename..." data-bind="textInput:l().middlename" />
-			<input class="form-control" type="text" placeholder="Lastname..." data-bind="textInput:l().lastname" />		
+			<input class="form-control" type="text" placeholder="Firstname..." data-bind="textInput:p().firstname"/>
+			<input class="form-control" type="text" placeholder="Middlename..." data-bind="textInput:p().middlename" />
+			<input class="form-control" type="text" placeholder="Lastname..." data-bind="textInput:p().lastname" />		
 		</div>
 	</div>
 
@@ -14,9 +14,9 @@
 			<label class="wide">Birthday: </label>
 
 			<div class="indent-right wide">
-				<select class="form-control" placeholder="Month..." data-bind="options:months(), value:l().birthmonth"></select>
-				<select class="form-control" placeholder="Days..." data-bind="options:days(), value:l().birthday"></select>
-				<select class="form-control" placeholder="Years..." data-bind="options:years(), value:l().birthyear"></select>
+				<select class="form-control" placeholder="Month..." data-bind="options:months(), value:p().birthmonth"></select>
+				<select class="form-control" placeholder="Days..." data-bind="options:days(), value:p().birthday"></select>
+				<select class="form-control" placeholder="Years..." data-bind="options:years(), value:p().birthyear"></select>
 			</div>
 		</div>
 
@@ -26,7 +26,7 @@
 					<label class="Q3-width">Gender: </label>
 				</div>
 				<div class="wide indent-right">
-					<select class="form-control" placeholder="Gender..." data-bind="value:l().gender">
+					<select class="form-control" placeholder="Gender..." data-bind="value:p().gender">
 						<option value="m">Male</option>
 						<option value="f">Female</option>
 					</select>
@@ -40,7 +40,7 @@
 				<label class="wide">Email: </label>
 
 				<div class="indent-right wide">
-					<input class="form-control" type="text" placeholder="Email..." data-bind="value:l().email" />
+					<input class="form-control" type="text" placeholder="Email..." data-bind="value:p().email" />
 				</div>
 		</div>
 
@@ -48,7 +48,7 @@
 			<label class="wide">Image: </label>
 
 				<div class="indent-right wide">
-					<input class="form-control" type="text" placeholder="URL..." data-bind="value:l().image"/>
+					<input class="form-control" type="text" placeholder="URL..." data-bind="value:p().image"/>
 				</div>
 			</div>
 		</div>
@@ -57,7 +57,7 @@
 		<label class="wide">Description: </label>
 
 		<div class="indent-right wide">
-			<textarea class="form-control Q3-width" data-bind="textInput:l().description"></textarea>
+			<textarea class="form-control Q3-width" data-bind="textInput:p().description"></textarea>
 		</div>
 	</div>
 </form>

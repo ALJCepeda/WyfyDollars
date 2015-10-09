@@ -18,13 +18,29 @@ define([], function() {
  			});
  		};
 
+ 		this.injectManyWidgets = function(injects, complete) {
+ 			var count = injects.length;
+ 			var completed = 0;
+ 			injects.forEach(function(inject) {
+ 				var containerID = inject[0];
+ 				var widget = inject[1];
+
+ 				self.injectWidget(containerID, widget, function() {
+ 					completed++;
+ 					if(completed === count) {
+ 						if(_.isFunction(complete)) { complete(); }
+ 					}
+ 				});
+ 			});
+ 		};
+
  		this.injectWidget = function(containerID, widget, complete) {
 			self.fetchView(widget.view, function(html) {
 				self.inject(containerID, html, widget, function() {
 					if(_.isFunction(complete)) { complete(); }
 				});
 			});
- 		}
+ 		};
 
  		this.injectView = function(containerID, html, complete) {
  			self.injectHTML(containerID, html);
@@ -57,13 +73,13 @@ define([], function() {
 
 				self.injectView(containerID, html, complete);
 			});
-		}
+		};
 
 		this.fetchModel = function(modelpath, complete) {
 			require([modelpath], function(vm) {
 				complete(vm);
 			});
-		}
+		};
 
 		this.fetchView = function(viewpath, complete) {
 			$.get(viewpath).fail(function(error) {
@@ -72,14 +88,14 @@ define([], function() {
 			}).done(function(data) {
 				complete(data);
 			});
-		}
+		};
 
 		this.injectHTML = function(containerID, html) {
 			var selector= '#' + containerID;
 			//There was an issue with $().html throwing a deprecated warning
 			//When injecting multiple widgets
 			$(selector)[0].innerHTML = html;
-		}
+		};
 
 		this.bindModel = function(containerID, model) {
 			var element = $('#'+containerID)[0];
@@ -102,7 +118,7 @@ define([], function() {
 	               	ui.helper.zIndex = 2;
 	            }
 		    });
-		}
+		};
 
 		this.refreshDOM = function(callback, delay) {
 			delay = _.isUndefined(delay) ? 20 : delay;
@@ -110,7 +126,7 @@ define([], function() {
 				//componentHandler.upgradeDom();
 				callback();
 			}, delay);
-		}
+		};
 	}
 
 	return Injector;
