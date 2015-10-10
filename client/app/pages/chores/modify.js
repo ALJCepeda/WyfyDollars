@@ -9,11 +9,20 @@ define(['resources/services/injector',
 		var t = table;
 		this.table = t;
 
+		this.selected = t.selected;
+
 		var profiler = new ProfileNavigator();
 		var p = profiler;
 		this.profiler = p;
 
-		this.selected = t.selected;
+		p.ID.didSelect = function(id) {
+			var element = p.ID.element(id);
+			element.border = 3;
+		};
+		p.ID.didDeselect = function(id) {
+			var element = p.ID.element(id);
+			element.border = 0;
+		};
 
 		this.onLoad = function() {
 			var injector = new Injector();
