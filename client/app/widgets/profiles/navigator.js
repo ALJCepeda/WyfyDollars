@@ -14,20 +14,16 @@ define(
 		this.selectedID = ko.observable(1392);
 		this.selected = ko.computed(function() { return ds.select.profile.withID(self.selectedID()); });
 		
-		this.clicked = function(id) {
-			console.log("Clicked: " +id);
-		}
-
-		this.doubleClicked = function(id) {
-			console.log("Double Clicked: " +id);
-		}
-
 		this.imageFor = function(id) {
 			return ds.select.profile.withID(id).image;
 		};
-		this._clickedID = function(id) {
+
+		this._clickedID = function(id, element) {
 			self.selectedID(id);
-			self.clickedID();
+			self.clickedID(id, element);
+		};
+		this._doubleClickedID = function(id, element) {
+			self.doubleClickedID(id, element);
 		};
 		this._clickedAddBtn = function() {
 			self.clickedAddBtn();
@@ -35,9 +31,10 @@ define(
 		this._clickedAllBtn = function() { 
 			self.clickedAllBtn(); 
 		};
-		this.clickedID = function() { };
-		this.clickAddBtn = function() { };
-		this.clickedAllBtn = function() { };
+		this.clickedID = function(id, element) { };
+		this.doubleClickedID = function(id, element) { };
+		this.clickAddBtn = function(element) { };
+		this.clickedAllBtn = function(element) { };
 	}
 
 	return Profiler;

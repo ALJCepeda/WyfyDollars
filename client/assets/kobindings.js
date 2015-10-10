@@ -11,7 +11,7 @@ ko.bindingHandlers.singleClick= {
             } else {        
                 clickTimeout = setTimeout(function() {
                     clickTimeout = false;
-                    handler(bindingContext.$data);
+                    handler(bindingContext.$data, element);
                 }, delay);
             }
         });
