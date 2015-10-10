@@ -1,35 +1,6 @@
 <div class="panel mdl-shadow--2dp">
-	<div class="panel-content fill row-w h-center">
-		<div id="chores" class="wide Q1-height">
-			<button class="onseem-topright mdl-button mdl-js-button mdl-button--fab mdl-button--colored" style="z-index:200;">
-				<i class="material-icons">add</i>
-			</button>
-			<table class="standard-table indent-right">
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th>Description</th>
-						<th>&nbsp;</th>
-					</tr>
-				</thead>
-				<tbody data-bind="foreach: chores">
-					<tr>
-						<!-- ko ifnot:editable -->
-						<td data-bind='text:name'>name</td>
-						<td data-bind='text:description'>description</td>
-						<!-- /ko -->
-						<!-- ko if:editable -->
-						<td><input data-bind='value:name' /></td>
-						<td><input data-bind='value:description' /></td>
-						<!-- /ko -->
-
-						<td>
-						 	<a data-bind="attr:{ href:'#chores/modify/edit/' + id }"><i class="material-icons">edit</i></a>
-							<a data-bind="attr:{ href:'#chores/modify/delete/' + id}"><i class="material-icons">delete</i></a>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+	<div class="panel-content fill col-w m-between c-center">
+		<div id="chores" class="wide Q1-height"></div>
+		<div id="profiler" class="wide Q1-height"></div>
 	</div>
 </div>

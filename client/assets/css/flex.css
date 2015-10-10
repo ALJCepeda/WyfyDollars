@@ -15,38 +15,38 @@
 	flex-flow:column nowrap;
 }
 
-.v-center {
+.c-center {
 	align-items:center;
 }
-.v-top {
+.c-top {
 	align-items:flex-start;
 }
-.v-bottom {
+.c-bottom {
 	align-items:flex-end;
 }
-.v-fill {
+.c-fill {
 	align-items:stretch;
 }
-.v-between {
+.c-between {
 	align-items:space-between;
 }
-.v-around {
+.c-around {
 	align-item:space-around;
 }
 
-.h-center {
+.m-center {
 	justify-content:center;
 }
-.h-left {
+.m-left {
 	justify-content:flex-start;
 }
-.h-right {
+.m-right {
 	justify-content:flex-end;
 }
-.h-between {
+.m-between {
 	justify-content:space-between;
 }
-.h-around {
+.m-around {
 	justify-content:space-around;
 }
 
