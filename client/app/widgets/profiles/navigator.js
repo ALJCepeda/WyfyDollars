@@ -14,6 +14,14 @@ define(
 		this.selectedID = ko.observable(1392);
 		this.selected = ko.computed(function() { return ds.select.profile.withID(self.selectedID()); });
 		
+		this.clicked = function(id) {
+			console.log("Clicked: " +id);
+		}
+
+		this.doubleClicked = function(id) {
+			console.log("Double Clicked: " +id);
+		}
+
 		this.imageFor = function(id) {
 			return ds.select.profile.withID(id).image;
 		};
