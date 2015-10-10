@@ -1,13 +1,12 @@
-<div class="panel Q3 mdl-shadow--2dp">
-	<div class="wide mdl-grid mdl-grid--no-spacing flex-center step-down">
-		<div class="draggable content flex-center wide">
-			<button class="onseem-topright mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+<div class="panel mdl-shadow--2dp">
+	<div class="panel-content fill row-w h-center">
+		<div id="chores" class="wide Q1-height">
+			<button class="onseem-topright mdl-button mdl-js-button mdl-button--fab mdl-button--colored" style="z-index:200;">
 				<i class="material-icons">add</i>
 			</button>
-			<table class="standard-table">
+			<table class="standard-table indent-right">
 				<thead>
 					<tr>
-						<th>&nbsp;</th>
 						<th>Name</th>
 						<th>Description</th>
 						<th>&nbsp;</th>
@@ -15,11 +14,6 @@
 				</thead>
 				<tbody data-bind="foreach: chores">
 					<tr>
-						<td>
-							<a href="javascript:void(0)">
-								<i class="material-icons">open_with</i>
-							</a>
-						</td>
 						<!-- ko ifnot:editable -->
 						<td data-bind='text:name'>name</td>
 						<td data-bind='text:description'>description</td>
@@ -31,14 +25,11 @@
 
 						<td>
 						 	<a data-bind="attr:{ href:'#chores/modify/edit/' + id }"><i class="material-icons">edit</i></a>
-							<a data-bind="click:$parent.remove, attr:{ href:'#chores/modify/delete/' + id}"><i class="material-icons">delete</i></a>
+							<a data-bind="attr:{ href:'#chores/modify/delete/' + id}"><i class="material-icons">delete</i></a>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 	</div>
-	<div class="blue wide" style="flex:1 2; min-height:500px;"></div>
-	<div style="flex:2 1; min-height:500px;"></div>
-	<div class="purple wide" style="flex:1 2; min-height:500px;"></div>
 </div>
