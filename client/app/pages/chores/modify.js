@@ -9,21 +9,29 @@ define(['resources/services/injector',
 		var t = table;
 		this.table = t;
 
-		this.selected = t.selected;
+		this.selectedChore = t.selected;
 
 		var profiler = new ProfileNavigator();
 		var p = profiler;
 		this.profiler = p;
 
-		p.ID.didSelect = function(id) {
+		this.selectedIDs = ko.observableArray([]);
+		p.ID.doubleClicked = function(id) {
+			if(self.selectedIDs.indexOf(id) === -1) {
+				self.selectedIDs.push(id);
+				self.didSelect(id);
+			} else if(self.selectedIDs.remove(id)){ 
+				self.didDeselect(id);
+			}
+		};
+		self.didSelect = function(id) {
 			var element = p.ID.element(id);
 			element.border = 3;
 		};
-		p.ID.didDeselect = function(id) {
+		self.didDeselect = function(id) {
 			var element = p.ID.element(id);
 			element.border = 0;
 		};
-
 		this.onLoad = function() {
 			var injector = new Injector();
 			injector.injectManyWidgets([
@@ -31,7 +39,6 @@ define(['resources/services/injector',
 				['profiler', p]
 			]);
 		};
-		
 		this.onAction = function(param) {
 			var steps = param.split("/");
 			var action = steps[0];

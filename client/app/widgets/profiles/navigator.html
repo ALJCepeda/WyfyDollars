@@ -17,7 +17,7 @@
 		</div> 
 		<!-- ko foreach:ds.profileIDs -->
 		<div class="shift-left shift-right">
-			<img class="fill thumbnail mdl-shadow--4dp " border="0" data-bind="attr: { src:$parent.imageForID($data), profile:$data }, singleClick: $parent._clickedID, event : { dblclick: $parent._doubleClickedID }" >
+			<img class="fill thumbnail mdl-shadow--4dp " border="0" data-bind="attr: { src:$parent.ID.image($data), profile:$data }, singleClick: $parent.ID._clicked, event : { dblclick: $parent.ID._doubleClicked }" >
 		</div>
 		<!-- /ko -->
 	</div>
