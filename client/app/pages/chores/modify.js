@@ -39,14 +39,12 @@ define(['resources/services/injector',
 				['profiler', p]
 			]);
 		};
-		this.onAction = function(param) {
-			var steps = param.split("/");
-			var action = steps[0];
+		this.onAction = function(params) {
+			var action = params[0];
 
-			console.log(action);
 			switch(action) {
 				case 'edit':
-					var id = param[1];
+					var id = params[1];
 					this.edit(id);
 			}
 		}

@@ -52,7 +52,8 @@ define(['resources/routemap', 'resources/user', 'resources/services/navigator'],
 
 		  		this.loading.then(function(vm) {
 			  		if(_.isObject(vm.model) && _.isFunction(vm.model.onAction)) {
-			  			vm.model.onAction(action);
+			  			var params = action.split("/");
+			  			vm.model.onAction(params);
 			  		} else {
 			  			//Failed to load view, vm is an object with erros
 			  		}
