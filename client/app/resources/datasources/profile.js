@@ -6,6 +6,9 @@ define(['mocks/profiles', 'resources/abstracts/dataselect'], function(data, Data
 		this.detailed = ko.computed(function() { return self.data().detailed; });
 
 		this.select = new DataSelect(this.detailed, 'profile');
+		this.profile = function (id) {
+			return this.detailed()[id];
+		};
 		this.profileIDs = ko.computed(function() { return self.select.allIDs(); });
 	};
 

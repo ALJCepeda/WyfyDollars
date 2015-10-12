@@ -1,7 +1,7 @@
 ko.bindingHandlers.singleClick= {
     init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
         var handler = valueAccessor(),
-            delay = 400,
+            delay = 200,
             clickTimeout = false;
 
         $(element).click(function() {

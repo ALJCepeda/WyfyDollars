@@ -12,7 +12,11 @@ define(['resources/services/injector',
 			n.showAllBtn(false);
 			n.showAddBtn(true);
 
-			var p = n.selected;
+			this.selectedID = ko.observable(1392);
+			this.selectedProfile = ko.computed(function() {
+				return n.ds.profile(self.selectedID());
+			});
+			var p = this.selectedProfile;
 			this.p = p; //p is for profile
 
 			var profileEditor = new ProfileEditor(p);
@@ -22,6 +26,13 @@ define(['resources/services/injector',
 			var profileCard = new ProfileCard(p);
 			var c = profileCard;
 			this.c = profileCard;
+
+			n.ID.clicked = function(id) {
+				self.selectedID(id)
+			};
+			n.ID.doubleClicked = function(id) {
+				console.log("Double clicked " + id);
+			};
 
 			this.onLoad = function() {
 				var injector = new Injector();
